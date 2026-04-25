@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Offline Verifiability: Architectural, Not Contractual — Lintel Standard</title>
+<meta name="description" content="Code escrow, bankruptcy-remote SPVs, and multi-year survival clauses keep a vendor operating through distress. None of them keeps a verification artifact independently checkable once the vendor is gone. Verifiability has to be architectural, not contractual.">
+<link rel="canonical" href="https://lintelstandard.com/writing/offline-verifiability/">
+
+<meta property="og:type" content="article">
+<meta property="og:title" content="Offline Verifiability: Architectural, Not Contractual">
+<meta property="og:description" content="Code escrow, bankruptcy-remote SPVs, and multi-year survival clauses keep a vendor operating through distress. None of them keeps a verification artifact independently checkable once the vendor is gone. Verifiability has to be architectural, not contractual.">
+<meta property="og:url" content="https://lintelstandard.com/writing/offline-verifiability/">
+<meta property="og:image" content="https://lintelstandard.com/assets/compressed/open_graph.jpg">
+<meta property="article:published_time" content="2026-04-11">
+<meta property="article:modified_time" content="2026-04-11">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Offline Verifiability: Architectural, Not Contractual">
+<meta name="twitter:description" content="Code escrow, bankruptcy-remote SPVs, and multi-year survival clauses keep a vendor operating through distress. None of them keeps a verification artifact independently checkable once the vendor is gone. Verifiability has to be architectural, not contractual.">
+<meta name="twitter:image" content="https://lintelstandard.com/assets/compressed/open_graph.jpg">
+
+<link rel="icon" href="/assets/favicon/favicon.ico" sizes="any">
+<link rel="icon" href="/assets/favicon/favicon-96x96.png" type="image/png" sizes="96x96">
+<link rel="apple-touch-icon" href="/assets/favicon/apple-touch-icon.png">
+<link rel="manifest" href="/assets/favicon/site.webmanifest">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="/assets/fonts/inter/Inter-Subset.woff2">
+<link rel="stylesheet" href="/assets/css/colors_and_type.css">
+<link rel="stylesheet" href="/assets/css/site.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="header">
+  <div class="header__inner">
+    <a class="header__brand" href="/" aria-label="Lintel Standard, home">
+      <img src="/assets/compressed/logo-wordmark.png" alt="Lintel Standard" width="120" height="64">
+    </a>
+    <button class="header__nav-toggle" type="button" aria-expanded="false" aria-controls="primary-nav">Menu</button>
+    <nav id="primary-nav" class="header__nav" aria-label="Primary">
+      <a href="/technology/">Technology</a>
+      <a href="/writing/" aria-current="page">Writing</a>
+      <a href="/about/">About</a>
+    </nav>
+    <div class="header__spacer"></div>
+    <a class="header__cta" href="/contact/">Contact us</a>
+  </div>
+</header>
+
+<main id="main">
+  <article class="article">
+    <nav class="article-breadcrumb" aria-label="Breadcrumb">
+      <a href="/writing/">Writing</a>
+      <span class="sep">/</span>
+      <span>Offline Verifiability: Architectural, Not Contractual</span>
+    </nav>
+
+    <header class="article-header">
+      <p class="article-header__cat">TECHNICAL</p>
+      <h1 class="article-header__h1">Offline Verifiability: Architectural, Not Contractual</h1>
+      <p class="article-meta">
+        <a href="/about/">Kalle H. Fischer</a> — Founder, Lintel Standard
+        · Published 2026-04-11
+      </p>
+    </header>
+
+    <div class="article-rule"><hr></div>
+
+    <div class="article-body">
+      <h2>1. Contractual continuity solves vendor-risk but cannot keep a verification artifact interpretable decades later</h2>
+<p>Code escrow, bankruptcy-remote SPVs, and multi-year survival clauses keep a vendor operating through distress. None of them keeps a verification artifact independently checkable once the vendor is gone. I will call the standard stack <strong>Contractual Continuity</strong> — a guarantee whose invocation depends on a counterparty performing an obligation — and name the gap it leaves before describing the alternative.</p>
+<p>An ops-side diligence reviewer in 2026 opens a vendor file and reads the components of Contractual Continuity the industry has converged on. Code escrow through NCC Group or Iron Mountain, via offerings such as <a href="https://www.nccgroup.com/newsroom/ncc-group-launches-escode/" target="_blank" rel="noopener">NCC Group’s Escode service</a>. A bankruptcy-remote SPV to ring-fence the vendor relationship from a parent-level failure. Survival clauses running three to seven years past termination, as drafted into standard fund-administration and service-provider agreements (<a href="https://www.aima.org/sound-practices/guides-to-sound-practices.html" target="_blank" rel="noopener">AIMA Guide to Sound Practices for the Selection and Periodic Assessment of Administrators</a>). SOC 2 criteria CC7 on system operations, which the customer’s auditors then test against the <a href="https://www.aicpa-cima.com/resources/download/2017-trust-services-criteria-with-revised-points-of-focus-2022" target="_blank" rel="noopener">AICPA 2017 Trust Services Criteria (with revised Points of Focus — 2022)</a>.</p>
+<p>The strongest version of the contractual rebuttal is not that any one of these instruments suffices, but that their combination is stronger than it looks. Escrow releases source; build documentation and containerised images released into escrow alongside source can, in principle, let a successor rebuild the verifier; a trustee or a customer consortium can, in principle, stand up that rebuilt verifier post-failure; survival clauses buy migration time for exactly this exercise. On paper, escrow-plus-build-docs-plus-container-images-plus-trustee-reconstruction is a path to future interpretability without architectural continuity. I take that rebuttal seriously because it is the one a careful GC actually raises.</p>
+<p>The rebuttal fails on the part that matters, which is independence of the verification path from a live vendor. Every step in the reconstruction route rides on a party executing an obligation at the moment the artifact is questioned. The escrow agent must still exist and still hold the deposit. The build environment must still be reproducible on whatever toolchain survives. The trustee must still be funded to run the rebuild. A successor must still be willing to sign the rebuilt verifier. Each of these is a counterparty-conditional step, and each is the kind of step that goes missing in the cases — bankruptcies decades after the fact, acquirers that drop product lines, escrow agents that merge — where continuity actually gets tested. A Strategy Verification Package (SVP) whose verifiability depends on any such party has a half-life tied to the longest-lived counterparty in the chain.</p>
+<p>A disclosure before the rest of the argument: I build Lintel in this space, so this framing is not disinterested. The claim is architectural, and the reader is invited to check the mechanism rather than take my word.</p>
+<h2>2. The architectural alternative reduces verification to four inputs, none of them Lintel-specific</h2>
+<p>I use the term <strong>Architectural Continuity</strong> for a specific property: a verification procedure that depends only on inputs whose persistence is not conditional on the vendor’s existence. This is the counterpart to Contractual Continuity named in §1.</p>
+<p>Offline verification of an SVP depends on four inputs and no others. The first is the bundle itself, which the allocator already holds. The second is the public attestation root of the CPU vendor that manufactured the Trusted Execution Environment (TEE, the hardware enclave that ran the strategy) — AMD’s Attestation Root Key (ARK) for SEV-SNP, specified in the <a href="https://www.amd.com/content/dam/amd/en/documents/developer/56860.pdf" target="_blank" rel="noopener">AMD SEV-SNP Firmware ABI Specification</a>, or Intel’s corresponding root for Trust Domain Extensions (TDX), documented in <a href="https://www.intel.com/content/www/us/en/developer/tools/trust-domain-extensions/documentation.html" target="_blank" rel="noopener">Intel’s TDX documentation hub</a>. The third is the open-source offline verifier binary. The fourth is any general-purpose machine that can execute it.</p>
+<p>The hardware roots work as a multi-decade anchor because they are not preserved at Lintel’s option. AMD and Intel publish vendor key hierarchies in which the top-level ARK signs an intermediate (the AMD Signing Key, ASK), which in turn authorises the per-chip Versioned Chip Endorsement Key (VCEK); TDX has the equivalent structure, as laid out in the <a href="https://www.amd.com/content/dam/amd/en/documents/developer/56860.pdf" target="_blank" rel="noopener">AMD SEV-SNP ABI specification’s attestation and VCEK sections</a>. The chipmaker preserves these chains because every chip ever sold on the platform is rooted in the same key material, not because of anything Lintel does or pays for.</p>
+<p>The property that follows I call <strong>Attestation Root Independence</strong>, treated here as a sub-property of Architectural Continuity and developed in the §3 walkthrough rather than as a co-equal named concept: for every cryptographic check that matters to the verdict, the verification chain terminates at the CPU vendor’s root, not at a Lintel-controlled key. The protocol vocabulary this sits inside is <a href="https://datatracker.ietf.org/doc/rfc9334/" target="_blank" rel="noopener">IETF RFC 9334, the Remote Attestation Procedures (RATS) Architecture</a>. The verifier binary is Apache 2.0, distributed as a signed static Rust binary, reproducible from the public source, and released through a public repository with maintainer signatures [CITE: Lintel verifier public repository — license, release-signing key, reproducible-build instructions].</p>
+<p>The hardest objection here is the hidden-dependency one: the verifier binary, the roots bundled inside it, and the enclave registry it carries are themselves produced by Lintel, so calling the verification procedure Lintel-independent only shifts the dependency rather than removing it. The answer is to name the trust boundary precisely. What must be Lintel-independent is not the authorship of the verifier but the reproducibility and auditability of it after the fact: the source is public and Apache 2.0, the build is reproducible from that source by a third party, the release signature is verifiable against a published maintainer key, and the bundled AMD/Intel roots match the vendor-published roots that any reviewer can fetch directly from the chipmaker. An independent reviewer who distrusts Lintel can rebuild the binary from source, confirm bit-for-bit equivalence with the signed release, and confirm the bundled roots against the chipmakers’ own publications — no Lintel cooperation required. The enclave registry is a different case and is treated in §3, where it is load-bearing.</p>
+<p>Lintel is not in the list of inputs. The claim is falsifiable on the face of it: point to a step in the verification procedure that requires Lintel, and the claim fails.</p>
+<h2>3. An SVP compiled in 2026 is verifiable in 2045 because the 2045 procedure names no Lintel dependency</h2>
+<p>An SVP compiled in 2026 is verifiable in 2045 because the 2045 procedure, walked through step by step, names no Lintel dependency at any point. The cleanest way to show this is to run the walkthrough and note, at each step, which party’s continued existence is required.</p>
+<p>Input one is the bundle. The allocator who receives an SVP in 2026 holds it on their own storage, in their own custody, the same way they hold a signed PDF of an ISDA master agreement. Inside are the canonical program bytes, the data manifest, the environment descriptor, the run conditions, the attestation quote produced by the TEE, and — load-bearing for the 2045 case — the AMD or Intel certificate chain pinned at the time the SVP was compiled, as set out in <a href="https://papers.ssrn.com/abstract=6090766" target="_blank" rel="noopener">the Computed Veracity Protocol working paper (SSRN 6090766)</a>.</p>
+<p>Input two is the verifier binary. It is a signed static Rust executable, hash-verified, versioned, and released through a public repository with maintainer signatures. The binary carries a snapshot of the Lintel enclave registry and the AMD/Intel root keys bundled at the moment of its release, so the verifier does not need network access to fetch them later. Given fixed inputs, the verifier is deterministic: the same bundle, the same verifier version, the same bundled roots produce the same verdict on any machine, in any year — a property that follows from the sub-Turing determinism guarantees of the <a href="https://papers.ssrn.com/abstract=6388459" target="_blank" rel="noopener">Open Veracity Language specification (SSRN 6388459)</a> that the verifier consumes.</p>
+<p>The obvious external objection at this point is registry drift. The Lintel enclave registry records which enclave measurements correspond to which authorised Lintel compiler versions; if that registry evolves after 2026 — new compiler versions added, old ones deprecated — does a 2045 verifier still have the registry entry needed to interpret a 2026 SVP? The answer is that the registry is append-only for historical entries and is snapshotted into each verifier release. A 2026 SVP is interpretable by any verifier release from 2026 onward, because every such release carries a registry snapshot that includes the 2026 entries. The 2026 SVP never requires a future registry update to remain verifiable; it requires only a verifier release contemporaneous with or later than its own compilation, per the <a href="https://papers.ssrn.com/abstract=6090766" target="_blank" rel="noopener">CVP framework’s append-only registry treatment (SSRN 6090766)</a>.</p>
+<p>The related objection is verifier staleness — a 2026 verifier running in 2045 on a 2045 machine. Deterministic execution from fixed inputs is the point: the verifier does not need to be current, it needs to be runnable. A signed 2026 verifier binary, preserved as a file the same way the bundle is preserved as a file, runs on any 2045 machine that can execute a Linux x86-64 static binary. Certificate-chain concerns resolve the same way: the chain was pinned at compile time into the bundle, so no 2045 fetch from a vendor endpoint is required.</p>
+<p>Input three is the hardware vendor’s attestation root — the AMD ARK or the Intel TDX vendor root for the TEE generation the SVP was produced on. This is preserved by the chipmaker for reasons tied to every customer that ever attested on that platform, via the <a href="https://www.amd.com/content/dam/amd/en/documents/developer/56860.pdf" target="_blank" rel="noopener">AMD SEV-SNP VCEK/ASK/ARK chain specification</a>.</p>
+<p>Input four is any general-purpose machine that can execute the verifier binary — concretely, a Linux x86-64 environment capable of running a static Rust executable, with no network, no Lintel software, and no specialist hardware required. A 2045 laptop, an air-gapped workstation in an audit room, a bankruptcy trustee’s dedicated audit box — each works equally well, consistent with the minimum execution requirements outlined in the <a href="https://papers.ssrn.com/abstract=6388459" target="_blank" rel="noopener">OVL specification (SSRN 6388459)</a>.</p>
+<p>Lintel is not on this list.</p>
+<h2>4. Lintel disappearing breaks new-SVP compilation, not verification of any SVP already produced</h2>
+<p>The continuity story is an asymmetry, and the asymmetry is the point. Verification survives Lintel’s disappearance because the verification function is architectural. Compilation does not survive, because the compilation function is operational — concretely, it depends on the Lintel-operated compile service, the Lintel signing key used to endorse a fresh enclave measurement into the registry, and the hosted compile pipeline that places the bundle together from manager inputs.</p>
+<p>What is unaffected if Lintel goes under: verification of any SVP already in an allocator’s hands, the cryptographic proof chain inside any existing bundle, and the ability for a bankruptcy trustee, a future auditor, or an academic reviewer to re-run the verifier and obtain the same verdict the original allocator obtained, as framed by the continuity treatment in <a href="https://papers.ssrn.com/abstract=6090766" target="_blank" rel="noopener">Fischer’s CVP working paper (SSRN 6090766)</a>.</p>
+<p>What is affected: the compilation of new SVPs, the hosted lookup-by-ID service, the monitoring dashboard, and any Lintel-operated convenience API. These depend on Lintel being a going concern.</p>
+<p>The phrasing I will keep consistent across this argument: continuity of the verification function is architectural; continuity of the compilation function is contractual. The buyer-side rebuttal to this framing deserves direct engagement: some allocators do care about post-failure re-issuance — a manager who needs a fresh SVP compiled during a Lintel wind-down because a new allocator is onboarding mid-quarter, for example — and for those workflows the commercial dependency is real. I do not contest that. The narrower architectural claim survives the concession because it is specifically about already-issued SVPs: a bundle an allocator holds today remains verifiable regardless of Lintel’s status tomorrow. Fresh compilation during a wind-down is a commercial-continuity question, handled by the same contractual instruments — escrow of the compile pipeline, survival clauses on the compile service — that this piece argues are the right tool for that job.</p>
+<p>Scoping note, so the architectural claim is not read wider than it is: the offline verifier does not establish strategy semantics, data authenticity, or live-trading persistence. Those are separate scopes, treated in pieces on expert review and allocator specification inspection, and scoped explicitly in the <a href="https://papers.ssrn.com/abstract=6090766" target="_blank" rel="noopener">CVP working paper’s Veracity Ladder (SSRN 6090766)</a>. That list is a scope note, not a concession on continuity.</p>
+<h2>5. Architectural continuity costs more to evaluate than reading an escrow agreement, and is stronger because its guarantee does not depend on a counterparty</h2>
+<p>The honest concession first. Architectural Continuity is a higher-diligence proposition than Contractual Continuity. In my own conversations with fund GCs and procurement leads, reading an NCC Group escrow agreement is typically described as an hour-or-two of a lawyer’s time, and reviewing an open-source verifier plus running the reference case is typically described as a one-to-three-day engineering exercise. I present those as anecdotal ranges from practitioner conversations, not as sourced market facts. I am not going to argue that reviewing source code is as cheap as reviewing a contract, because it is not.</p>
+<p>The mechanism that makes the higher-cost review worth the cost is this: a contractual guarantee is conditional on a future party performing an obligation at the moment the guarantee is invoked; an architectural guarantee is conditional only on a mathematical procedure producing a deterministic output from a specified set of inputs. The first rides on a counterparty. The second does not. If that distinction does not matter to the reader, contractual continuity is the right answer. If it does, architectural continuity is stronger on the specific dimension of <strong>invokability of verification after vendor death</strong> — whether a verdict can be obtained at all once the vendor is gone — because no party needs to remain alive for the guarantee to be invokable. I claim nothing beyond that dimension.</p>
+<p>The practical diligence path for a COO is concrete. Pull the verifier from the public repository. Verify the release signature against the maintainer’s published key. Run the binary against the reference SVP bundle shipped alongside the source. Confirm the attestation chain terminates at the AMD ARK or the Intel TDX root. What this path does not defend against is a compromise of the attestation-root chain itself — a different threat, handled in the defence-in-depth treatment [CITE: Lintel article #5, defence in depth against TEE side-channel CVEs].</p>
+<p>The higher diligence cost is also amortised, and the amortisation is concrete. An allocator that verifies, say, twenty SVPs per manager per year across fifteen managers pays the architectural-review cost once — pull the verifier, confirm the roots, run the reference case — and then spends roughly a minute per bundle running the verifier thereafter. Escrow review, by contrast, is per-contract and per-renewal; the same allocator reviewing fifteen manager relationships reviews fifteen escrow agreements and renews them on staggered cycles. The architectural review amortises across every SVP the allocator verifies afterward; the contractual review does not.</p>
+<h2>6. The line-item change: replace “vendor-viability risk” with “architectural-continuity verification” on the continuity subsection of the diligence template</h2>
+<p>The procurement action is concrete, and it does not require rewriting the diligence template — only replacing one line item inside the continuity subsection. Vendor-viability review remains appropriate for hosted services, support obligations, and the commercial-continuity questions raised in §4; the replacement is narrower than that. What it replaces is specifically the continuity check for offline verification, not vendor viability wholesale.</p>
+<p>The line that currently reads “vendor viability risk” or “going-concern risk” inside the continuity subsection should be replaced by a specific instruction: verify the reference SVP using the published offline verifier, and confirm the attestation chain terminates at the CPU vendor root key (AMD ARK or Intel TDX root). The acceptance criterion is binary on the cryptographic verdict: the verifier either produces a VALID verdict on the reference SVP, with the chain terminating at the expected root, or it does not. The reviewer records, at minimum: verifier version, verifier binary hash, reference bundle hash, attestation root fingerprint (AMD ARK or Intel TDX root), verdict, reviewer name, and date. That field set turns the line item from prose into an executable control, reproducible by any later reviewer against the same recorded inputs.</p>
+<p>Three terms carry the vocabulary: Architectural Continuity, Attestation Root Independence, and the offline verifier. Using these terms in the diligence memo signals to allocator-side reviewers that the continuity question has been handled architecturally rather than hand-waved. The <a href="https://www.aima.org/sound-practices/due-diligence-questionnaires.html" target="_blank" rel="noopener">AIMA Illustrative Questionnaire for the Due Diligence of Investment Managers</a> continuity section is the existing institutional vocabulary the replacement slots into, rather than a parallel track.</p>
+<p>A COO reading this should do one thing before their next procurement cycle: pull the public offline verifier, run it against the reference SVP bundle shipped with the repository, and document the recorded fields above in the continuity section of the vendor file.</p>
+
+    </div>
+
+  </article>
+
+  <section class="section more-writing" aria-labelledby="more-writing-h">
+    <div class="container">
+      <div class="section-head">
+        <p class="section-head__eyebrow">CONTINUE READING</p>
+        <span class="section-head__bar" aria-hidden="true"></span>
+        <h2 class="section-head__title" id="more-writing-h">More writing</h2>
+      </div>
+      <div class="article-grid">
+        <a class="article-card" href="/writing/defense-in-depth/">
+          <p class="article-card__meta">2026-04-25 · TECHNICAL</p>
+          <h3 class="article-card__title">Defense in Depth for Attested Execution</h3>
+          <p class="article-card__excerpt">Trusted Execution Environments have a published record of serious, remotely exploitable vulnerabilities. The right question is what survives a TEE break, not whether TEEs can break — and the answer determines what a verification platform owes its readers.</p>
+        </a>
+        <a class="article-card" href="/writing/tees-vs-zk-mpc-fhe/">
+          <p class="article-card__meta">2026-04-18 · TECHNICAL</p>
+          <h3 class="article-card__title">Why TEEs — Not ZK, MPC, or FHE</h3>
+          <p class="article-card__excerpt">TEEs are not the strongest cryptographic primitive when measured against zero-knowledge proofs, secure multiparty computation, or fully homomorphic encryption. The question is which one closes the Proof-Execution Gap today, on commodity hardware, at the latency a systematic strategy requires.</p>
+        </a>
+        <a class="article-card" href="/writing/build-in-house/">
+          <p class="article-card__meta">2026-04-04 · ARGUMENT</p>
+          <h3 class="article-card__title">Couldn&#39;t We Just Build This In-House?</h3>
+          <p class="article-card__excerpt">Sophisticated funds build in-house by default, and that default is usually right. The narrow ground on which a verification primitive is the exception — not the rule — is where the case for a third party gets made or doesn’t.</p>
+        </a>
+      </div>
+      <p class="see-all"><a href="/writing/">See all writing →</a></p>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="footer__inner">
+    <div class="footer__mark">
+      <img src="/assets/compressed/logo-mark.png" alt="Lintel Standard" width="80" height="64">
+    </div>
+    <div class="footer__links">
+      <a href="mailto:contact@lintelstandard.com">contact@lintelstandard.com</a>
+      <a href="https://ssrn.com/abstract=6090766" target="_blank" rel="noopener">SSRN 6090766 — OVL</a>
+      <a href="https://ssrn.com/abstract=6388459" target="_blank" rel="noopener">SSRN 6388459 — CVP</a>
+      <a href="/trust/">Trust</a>
+    </div>
+    <div class="footer__copy">© 2026 Lintel Standard, Inc.</div>
+  </div>
+</footer>
+
+<script>
+  document.querySelector('.header__nav-toggle')?.addEventListener('click', function() {
+    var nav = document.getElementById('primary-nav');
+    var open = nav.dataset.open === 'true';
+    nav.dataset.open = open ? 'false' : 'true';
+    this.setAttribute('aria-expanded', open ? 'false' : 'true');
+  });
+</script>
+
+</body>
+</html>

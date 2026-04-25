@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /trust/
+
+Sitemap: https://lintelstandard.com/sitemap.xml

@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Strategy Verification Maturity Model — Lintel Standard</title>
+<meta name="description" content="A maturity model earns its keep when practitioners read the levels and see their own work in them. A four-level model for strategy verification, calibrated to current allocator practice rather than what tooling makes possible.">
+<link rel="canonical" href="https://lintelstandard.com/writing/strategy-verification-maturity-model/">
+
+<meta property="og:type" content="article">
+<meta property="og:title" content="Strategy Verification Maturity Model">
+<meta property="og:description" content="A maturity model earns its keep when practitioners read the levels and see their own work in them. A four-level model for strategy verification, calibrated to current allocator practice rather than what tooling makes possible.">
+<meta property="og:url" content="https://lintelstandard.com/writing/strategy-verification-maturity-model/">
+<meta property="og:image" content="https://lintelstandard.com/assets/compressed/open_graph.jpg">
+<meta property="article:published_time" content="2026-03-28">
+<meta property="article:modified_time" content="2026-03-28">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Strategy Verification Maturity Model">
+<meta name="twitter:description" content="A maturity model earns its keep when practitioners read the levels and see their own work in them. A four-level model for strategy verification, calibrated to current allocator practice rather than what tooling makes possible.">
+<meta name="twitter:image" content="https://lintelstandard.com/assets/compressed/open_graph.jpg">
+
+<link rel="icon" href="/assets/favicon/favicon.ico" sizes="any">
+<link rel="icon" href="/assets/favicon/favicon-96x96.png" type="image/png" sizes="96x96">
+<link rel="apple-touch-icon" href="/assets/favicon/apple-touch-icon.png">
+<link rel="manifest" href="/assets/favicon/site.webmanifest">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="/assets/fonts/inter/Inter-Subset.woff2">
+<link rel="stylesheet" href="/assets/css/colors_and_type.css">
+<link rel="stylesheet" href="/assets/css/site.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="header">
+  <div class="header__inner">
+    <a class="header__brand" href="/" aria-label="Lintel Standard, home">
+      <img src="/assets/compressed/logo-wordmark.png" alt="Lintel Standard" width="120" height="64">
+    </a>
+    <button class="header__nav-toggle" type="button" aria-expanded="false" aria-controls="primary-nav">Menu</button>
+    <nav id="primary-nav" class="header__nav" aria-label="Primary">
+      <a href="/technology/">Technology</a>
+      <a href="/writing/" aria-current="page">Writing</a>
+      <a href="/about/">About</a>
+    </nav>
+    <div class="header__spacer"></div>
+    <a class="header__cta" href="/contact/">Contact us</a>
+  </div>
+</header>
+
+<main id="main">
+  <article class="article">
+    <nav class="article-breadcrumb" aria-label="Breadcrumb">
+      <a href="/writing/">Writing</a>
+      <span class="sep">/</span>
+      <span>Strategy Verification Maturity Model</span>
+    </nav>
+
+    <header class="article-header">
+      <p class="article-header__cat">FRAMEWORK</p>
+      <h1 class="article-header__h1">Strategy Verification Maturity Model</h1>
+      <p class="article-meta">
+        <a href="/about/">Kalle H. Fischer</a> — Founder, Lintel Standard
+        · Published 2026-03-28
+      </p>
+    </header>
+
+    <div class="article-rule"><hr></div>
+
+    <div class="article-body">
+      <h2>Maturity models travel when their levels describe reality, not vendor aspiration</h2>
+<p>A maturity model earns its keep when practitioners read the levels and see their own work in them. SOC 2’s Trust Services Criteria and DORA’s four metrics are the two frameworks I would defend on this test. Neither was imposed by a regulator; both propagated through DDQ cycles and engineering-org reporting because practitioners recognised their current practice in the lower rungs and a credible next step in the higher ones (<a href="https://www.aicpa-cima.com/resources/download/2017-trust-services-criteria-with-revised-points-of-focus-2022" target="_blank" rel="noopener">AICPA 2017 Trust Services Criteria with 2022 revised points of focus</a>) (<a href="https://cloud.google.com/blog/products/devops-sre/announcing-the-2024-dora-report" target="_blank" rel="noopener">2024 Accelerate State of DevOps Report</a>).</p>
+<p>The failure mode is as consistent as the success mode. Vendor-authored ladders that place the author’s product at Level 4 and the rest of the market at Level 1 are the main reason maturity models get dismissed in institutional finance before they are read. It is not that the shape of a ladder offends anyone. It is that the levels read as sales copy dressed up as taxonomy, and ODD consultants have seen enough of these to reject the category outright.</p>
+<p>A stronger objection than self-interest is statistical: most non-mandated frameworks die in institutional finance. A ladder without regulatory backing is a piece of published writing with no procurement mechanism attached, and published writing rarely changes procurement behaviour on its own. The transmission path that works without a mandate is template propagation — an ODD consultant or anchor allocator adding a placement question to the DDQ template, which then reaches every manager they cover in one revision cycle. §8 argues that path is available here.</p>
+<p>The test a framework has to pass to clear that filter is simple. A practitioner with no commercial relationship to the author should be willing to put the levels into their own DDQ and use them to rank the managers they already know. If the framework does not survive that redaction, it is marketing.</p>
+<p>Disclosure up front: I run Lintel Standard, a company that builds in the strategy verification space, read what follows with the test in mind. The model has five rungs, Level 0 through Level 4, running from narrative self-description to continuous cryptographic attestation. The contemporary due-diligence infrastructure caps at Level 1, and that ceiling is the point of this piece.</p>
+<h2>Level 0 — Trust via narrative: the emerging-manager default</h2>
+<p>Level 0 is verification by social proof. A manager describes the strategy in a pitch deck, a tear sheet, and a first meeting; no artifact is produced that can be checked against what actually ran on the book. The description is the deliverable, as reflected in the strategy-presentation sections of the <a href="https://www.aima.org/article/presenting-the-2025-edition.html" target="_blank" rel="noopener">AIMA Illustrative DDQ</a>.</p>
+<p>The verification substitutes are the categories the AIMA DDQ’s manager-background sections explicitly ask allocators to probe: pedigree (prior firm, graduate programme, alumni network), anchor-investor signalling, and a self-reported track record (<a href="https://www.aima.org/article/presenting-the-2025-edition.html" target="_blank" rel="noopener">AIMA Illustrative DDQ, 2025 edition</a>). An allocator who cannot inspect the computation inspects the proxies around it, and that is the rational response when no higher-fidelity artifact exists. The decision mechanism is reference-check triangulation: the IC memo weights the coherence of answers from prior supervisors, co-investors, and service providers, and sizes the allocation — if it proceeds — to the residual uncertainty.</p>
+<p>Level 0 is therefore not illegitimate. It is the structural floor, not the ceiling, and it is where emerging managers without institutional affiliations start by default. The stronger counter-case is the emerging manager who brings more than narrative — audited GIPS returns, SOC 2 on the administrator, reference checks with prior portfolio managers. These move the conversation, but none binds to the computation that produced the returns: the audit verifies accounting, not strategy adherence; the SOC 2 verifies the administrator’s controls, not the manager’s; reference checks are pedigree in a different register. The floor rises without the ceiling moving. When a manager has nothing else to offer and the allocator has no higher-fidelity signal to ask for, the conversation happens at Level 0 because that is the level the available infrastructure supports.</p>
+<h2>Level 1 — Trust via disclosure: where the current DD industry caps out</h2>
+<p>Level 1 is verification by structured, self-attested disclosure: due-diligence questionnaires, portfolio transparency letters, monthly risk reports, SOC-style attestations on service providers. The artifacts are structured, auditable, and comparable across managers — a step up from Level 0 that institutional DD teams have taken seriously since <a href="https://www.aima.org/sound-practices/due-diligence-questionnaires.html" target="_blank" rel="noopener">AIMA first published its DDQ in 1997</a>.</p>
+<p>They remain self-attested at the core. The manager asserts what ran; the reviewer checks the assertion’s internal consistency, not its truth against the computation that produced the numbers. A DDQ response claiming a sector-neutral exposure limit is checked against the claimed risk report, not against the code that computed the positions.</p>
+<p>The strongest case for Level 1 is not that it verifies truth but that it is the thing institutional procurement knows how to consume. Standardisation — shared DDQ vocabulary, common control categories — lets allocator teams compare managers without negotiating a new artifact format every time. Auditability lets legal and compliance review boundary conditions in advance. Procurement familiarity means the onboarding path for a Level 1 manager is one every allocator’s operations team has walked before. A framework that discards these properties for a small fidelity gain does not travel.</p>
+<p>The existing control-framework infrastructure sits here. The AIMA DDQ, the AITEC–AIMA Cyber DDQ, SOC 2 reports on the fund administrator — they produce Level 1 outputs because Level 1 is what they were designed to describe. The placement is descriptive, not pejorative. The ceiling sits at Level 1 because no higher-fidelity mechanism has been available at a price the industry was willing to pay.</p>
+<h2>Level 2 — Trust via reproduction: high trust, but requires IP exposure</h2>
+<p>Level 2 is verification by independent reproduction. The allocator receives the code, the input data, and the parameter set; re-runs the strategy in their own environment; and checks that the output matches the claimed results within tolerance, a discipline analogous to the <a href="https://afajof.org/wp-content/uploads/Data-and-Code-Sharing-Policy-1-April-2024.pdf" target="_blank" rel="noopener">Journal of Finance Data and Code Sharing Policy</a> and the <a href="https://revfin.org/code-sharing-policy/" target="_blank" rel="noopener">Review of Finance Code Sharing Policy</a>.</p>
+<p>The cost is the strategy itself. Reproduction demands full IP disclosure to the allocator — effectively handing over the thing the manager is paid to keep. Managers with defensible IP generally refuse, and allocator legal teams are reluctant to take custody of the IP for reasons of their own. Taking possession introduces downstream liability from any allocator-side data breach, alongside the legal risk of “IP contamination” if the allocator’s internal teams ever develop a competing strategy. To bypass these hazards, standard <a href="https://www.aima.org/sound-practices/guides-to-sound-practices.html" target="_blank" rel="noopener">operational due diligence frameworks</a> route verification through independent <a href="https://www.nccgroup.com/us/escrow/software-escrow/" target="_blank" rel="noopener">source code escrow agreements</a> rather than direct transfer. The reproduction model survives in academic replication communities and in a narrow band of quantitative allocator–manager relationships — some large pension in-house quant teams, a few multi-strat seeders — where both sides have explicitly signed up for the exposure. It does not generalise to institutional allocation practice.</p>
+<h2>Level 3 — Trust via sealed attestation: a cryptographic bind without IP disclosure</h2>
+<p>Level 3 is verification by sealed attestation. A strategy specification runs inside a Trusted Execution Environment (TEE) — a CPU-enforced enclave such as AMD SEV-SNP or Intel TDX that measures the code loaded into it and emits an attestation signed by a hardware-rooted key. The TEE signs the inputs and outputs of the computation and produces a verifier-checkable receipt. The verifier checks that the attestation signature chains to the hardware vendor’s root, that the measured code hash matches the published strategy specification, and that the input hash matches the claimed inputs. If all three check, the receipt binds the published strategy to the claimed outputs (<a href="https://datatracker.ietf.org/doc/rfc9334/" target="_blank" rel="noopener">IETF RFC 9334, Remote ATtestation procedureS Architecture</a>) (<a href="https://www.amd.com/content/dam/amd/en/documents/developer/lss-snp-attestation.pdf" target="_blank" rel="noopener">AMD SEV-SNP Attestation: Establishing Trust in Guests</a>).</p>
+<p>What the allocator receives is the receipt. The strategy stays with the manager. The verifier learns nothing about the signal logic, the factor weights, or the execution rules beyond what the receipt is designed to reveal. The trust property of Level 2 — independent verification of the computation — is obtained without the IP-custody cost that kept Level 2 from generalising.</p>
+<p>The standard objection is that TEEs move the trust assumption rather than remove it. The verifier now trusts the CPU vendor’s attestation infrastructure, the vendor’s firmware update process, and the absence of side-channels of the class documented in <a href="https://foreshadowattack.eu/" target="_blank" rel="noopener">Foreshadow (CVE-2018-3615)</a>, <a href="https://sgaxe.com/" target="_blank" rel="noopener">SGAxe (CVE-2020-0549)</a>, <a href="https://www.securityweek.com/plundervolt-attack-uses-voltage-steal-data-intel-chips/" target="_blank" rel="noopener">Plundervolt (CVE-2019-11157)</a>, and <a href="https://www.usenix.org/system/files/usenixsecurity24-zhang-ruiyi.pdf" target="_blank" rel="noopener">CacheWarp (CVE-2023-20592)</a>. The response is that the trust has moved to a smaller, more auditable party. A self-reporting manager is an incentive-conflicted party whose claim has no verifier-checkable backing; a CPU vendor is a party whose attestation chain is publicly specified and whose side-channel history is published rather than hidden. Layered defences — hardware mitigations, constant-time implementations, out-of-TEE cross-checks on output distribution — address the residual risk, which is non-zero but far smaller than taking a self-report on faith (<a href="https://confidentialcomputing.io/wp-content/uploads/sites/10/2023/03/CCC-A-Technical-Analysis-of-Confidential-Computing-v1.3_unlocked.pdf" target="_blank" rel="noopener">Confidential Computing Consortium: A Technical Analysis</a>).</p>
+<p>Level 3 is defined architecturally, not as a specific product. Multiple implementations can satisfy the property, and the ladder does not prescribe any one of them. This article is not a recommendation for a particular approach. It is the rung at which the verification ceiling structurally rises for emerging managers. The economic condition under which Level 3 is viable is specific: the manager’s cost of producing receipts plus the allocator’s cost of running a verifier has to be small relative to the ticket size. TEE cloud capacity is priced in dollars-per-hour and verifier code is open-source reference software. Whether those costs are small enough in practice is a pricing question, not a physics one, and the answer will differ by manager scale and allocator operations budget.</p>
+<h2>Level 4 — Trust via continuous attestation: the full lifecycle binds</h2>
+<p>Level 4 extends sealed attestation across the full strategy lifecycle. Level 3 binds a point-in-time claim (here is a backtest receipt, here is a live-run receipt). Level 4 binds the backtest, the live execution, and the periodic reporting into a single chain: each stage emits a Level 3 receipt whose output hash is carried into the next stage’s receipt as an input commitment, so every reported number is traceable back to a live-execution receipt that in turn references the backtest receipt and the strategy-specification hash, addressing the strategy-adherence deficiencies highlighted in the <a href="https://www.winston.com/en/insights-news/sec-risk-alert-certain-compliance-issues-for-private-fund-advisers" target="_blank" rel="noopener">SEC Division of Examinations 2022 Risk Alert on private fund advisers</a>.</p>
+<p>The property this delivers, if implemented, is specific. Intra-period strategy drift — one strategy in the backtest, a second during the marketing period, a third once subscribed capital arrived — becomes machine-detectable at the point of reporting rather than only reconstructible from samples. Periodic audit catches some drift: large position shifts, material misstatements between review points, and output-series discontinuities are within reach of a careful reviewer. What audit cannot catch reliably is parametric drift between sample points — a threshold widened and re-tightened before the next review, a risk limit breached within a sampling window and cured before the sample is drawn. Closing that gap is the Level 4 claim, contingent on full-chain implementation rather than asserted in advance.</p>
+<p>Level 4 is aspirational. I am naming it in this ladder so that practitioners have a ceiling to travel toward, not because any specific product delivers it today. The credibility test for the framework is that this is said plainly: no vendor, including the author of this piece, is in a position to claim Level 4 in general availability.</p>
+<h2>Nearly all emerging managers sit at Level 0 or Level 1 today</h2>
+<p>Most emerging managers, conventionally defined as sub-$500M AUM, sit at Level 0 or the bottom end of Level 1. They lack the institutional affiliations that make Level 0 a credible floor for an established manager, so they compete on narrative from a weaker starting position, and the infrastructure to carry them higher does not exist in a form they can currently buy.</p>
+<p>The placement mirrors the framework analysis in §3: existing ODD, fund-administration, and service-provider attestation infrastructure tops out at Level 1 by design. Level 2 is reached only in quantitative allocator–manager relationships that have opted into IP exposure on both sides. Levels 3 and 4 are not in general availability today.</p>
+<p>Trust accrues to longevity and brand — the signals that sit around a Level 1 artifact and compensate for the artifact’s self-attested core — and those are signals emerging managers by definition lack. Capital concentration in the top decile of hedge funds by AUM has grown over the past decade while emerging-manager net flow share has declined (<a href="https://www.preqin.com/insights/global-reports/2025-hedge-funds" target="_blank" rel="noopener">Preqin 2025 Global Report: Hedge Funds</a>). Verification ceiling is one explanation among several. Operational risk (back-office maturity, business-continuity planning) is a distinct concern ODD teams prioritise on its own terms. Business durability, including key-person risk and succession planning, is a reason pension investment committees prefer managers with established institutional infrastructure. Distribution matters: cap-intro and prime-brokerage channels move tickets toward established managers for reasons orthogonal to strategy quality. And seeding economics — minority equity stakes in exchange for anchor capital — work at a scale most emerging managers cannot absorb, as reflected in <a href="https://www.businesstimes.com.sg/companies-markets/banking-finance/blackstone-folds-hedge-fund-seeding-us60-billion-business" target="_blank" rel="noopener">Blackstone’s Strategic Alliance Fund historical ~$150m seeding tickets</a>. This article isolates the verification explanation because it is the one the existing framework literature has not yet priced; it does not claim to explain concentration on its own.</p>
+<p>This is not a claim that institutional due diligence is broken. ODD teams, fund administrators, and the frameworks they work inside do what those frameworks were designed to do, and they do it to a high professional standard. The claim is narrower: the ceiling sits at Level 1 for structural reasons, and the emerging-manager allocation pattern persists until that ceiling rises.</p>
+<h2>Allocators move the industry by adding one question to the next DDQ</h2>
+<p>The concrete action that makes this framework travel is a single question added to the next DDQ: <em>At what maturity level does your firm attest to strategy results?</em> Repeated across enough allocator–manager conversations, that one question creates direction-of-travel without any regulatory mandate being needed.</p>
+<p>DORA’s adoption pattern is an illustrative precedent, not proof. The four metrics — deployment frequency, lead time for changes, change failure rate, mean time to restore — were not imposed by any regulator. They travelled because the annual State of DevOps report tracked their adoption longitudinally, engineers referenced them in interviews, and risk officers cited them in vendor contracts (<a href="https://cloud.google.com/blog/products/devops-sre/announcing-the-2024-dora-report" target="_blank" rel="noopener">2024 Accelerate State of DevOps Report, decade-in-review</a>). The narrower lesson is not that every practitioner framework spreads this way — most do not — but that a non-mandated framework can travel when practitioners have both a reason to place themselves on it publicly and a shared vocabulary to do so.</p>
+<p>The DDQ addition is the minimum-viable intervention for the maturity model to travel the same way. The objection worth answering is that this maturity model is author-created and has not been independently validated, which ought to disqualify it from appearing in a DDQ. Two properties of the question blunt that objection. First, the question does not require the allocator to endorse the specific placement categories; it requires only that the manager self-place, which produces a comparable signal across managers whether or not the allocator accepts the definitions as written. Second, the maturity model is not proprietary — any ODD consultant who dislikes the category boundaries is free to fork them, publish their own, and re-use the question format. Independent validation happens by use, not by prior credentialing. A manager at Level 1 who describes themselves as Level 3 reveals something. A manager who asks what the maturity model is reveals something else. The incremental cost of asking the question is low, and the signal varies in quality by answer type but is present regardless.</p>
+<p>The scaling mechanism is the comparison dynamic. Allocators put the same question to every manager in their pipeline, compare the answers, and find that placement becomes a procurement dimension within the first cycle. Managers see the question appear in successive DDQs and work out that movement up the maturity model has become a procurement advantage — the kind of incentive that moves practice without anyone having to argue about it in principle.</p>
+<p>ODD consultants are the adopters with the greatest multiplier potential. A template addition at a consulting firm can propagate across dozens of allocator clients in one revision cycle, though propagation is not automatic — it depends on the consultant’s client composition and the cadence of their template-review cycle, a dynamic clearly visible in the widespread institutional reliance on standardized <a href="https://www.aima.org/sound-practices/industry-guides/due-diligence-questionnaires.html" target="_blank" rel="noopener">AIMA Due Diligence Questionnaires (DDQs)</a>. Where it lands, it moves the framework faster than article readership alone would carry it.</p>
+<p>The register of the ask matters. This is a DDQ amendment, not a product recommendation. The framework carries no implementation requirement, no preferred vendor, and no precondition that any particular technology is ready for production use. An allocator can adopt the maturity model today, ask the question in the next meeting, and commit to nothing further until the practitioner community has produced an implementation they are willing to stand behind. That is the ask the framework earns.</p>
+
+    </div>
+
+  </article>
+
+  <section class="section more-writing" aria-labelledby="more-writing-h">
+    <div class="container">
+      <div class="section-head">
+        <p class="section-head__eyebrow">CONTINUE READING</p>
+        <span class="section-head__bar" aria-hidden="true"></span>
+        <h2 class="section-head__title" id="more-writing-h">More writing</h2>
+      </div>
+      <div class="article-grid">
+        <a class="article-card" href="/writing/defense-in-depth/">
+          <p class="article-card__meta">2026-04-25 · TECHNICAL</p>
+          <h3 class="article-card__title">Defense in Depth for Attested Execution</h3>
+          <p class="article-card__excerpt">Trusted Execution Environments have a published record of serious, remotely exploitable vulnerabilities. The right question is what survives a TEE break, not whether TEEs can break — and the answer determines what a verification platform owes its readers.</p>
+        </a>
+        <a class="article-card" href="/writing/tees-vs-zk-mpc-fhe/">
+          <p class="article-card__meta">2026-04-18 · TECHNICAL</p>
+          <h3 class="article-card__title">Why TEEs — Not ZK, MPC, or FHE</h3>
+          <p class="article-card__excerpt">TEEs are not the strongest cryptographic primitive when measured against zero-knowledge proofs, secure multiparty computation, or fully homomorphic encryption. The question is which one closes the Proof-Execution Gap today, on commodity hardware, at the latency a systematic strategy requires.</p>
+        </a>
+        <a class="article-card" href="/writing/offline-verifiability/">
+          <p class="article-card__meta">2026-04-11 · TECHNICAL</p>
+          <h3 class="article-card__title">Offline Verifiability: Architectural, Not Contractual</h3>
+          <p class="article-card__excerpt">Code escrow, bankruptcy-remote SPVs, and multi-year survival clauses keep a vendor operating through distress. None of them keeps a verification artifact independently checkable once the vendor is gone. Verifiability has to be architectural, not contractual.</p>
+        </a>
+      </div>
+      <p class="see-all"><a href="/writing/">See all writing →</a></p>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="footer__inner">
+    <div class="footer__mark">
+      <img src="/assets/compressed/logo-mark.png" alt="Lintel Standard" width="80" height="64">
+    </div>
+    <div class="footer__links">
+      <a href="mailto:contact@lintelstandard.com">contact@lintelstandard.com</a>
+      <a href="https://ssrn.com/abstract=6090766" target="_blank" rel="noopener">SSRN 6090766 — OVL</a>
+      <a href="https://ssrn.com/abstract=6388459" target="_blank" rel="noopener">SSRN 6388459 — CVP</a>
+      <a href="/trust/">Trust</a>
+    </div>
+    <div class="footer__copy">© 2026 Lintel Standard, Inc.</div>
+  </div>
+</footer>
+
+<script>
+  document.querySelector('.header__nav-toggle')?.addEventListener('click', function() {
+    var nav = document.getElementById('primary-nav');
+    var open = nav.dataset.open === 'true';
+    nav.dataset.open = open ? 'false' : 'true';
+    this.setAttribute('aria-expanded', open ? 'false' : 'true');
+  });
+</script>
+
+</body>
+</html>

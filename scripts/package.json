@@ -1,0 +1,13 @@
+{
+  "name": "lintel-web-build-scripts",
+  "version": "1.0.0",
+  "description": "Build scripts for lintelstandard.com (markdown → article HTML).",
+  "private": true,
+  "scripts": {
+    "build:articles": "node build-articles.js"
+  },
+  "dependencies": {
+    "markdown-it": "^14.1.0",
+    "markdown-it-footnote": "^4.0.0"
+  }
+}

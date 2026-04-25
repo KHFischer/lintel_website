@@ -1,0 +1,233 @@
+/* ========================================================================
+   Lintel Standard — Design Tokens
+   ------------------------------------------------------------------------
+   Single source of truth for colour, typography, spacing, borders, and
+   motion tokens. Every component preview references this file and only
+   this file. The token set is closed; do not extend without review.
+   ======================================================================== */
+
+/* ----- Fonts -------------------------------------------------------------
+   Loaded locally from /assets/fonts. Do not swap to Google Fonts or any
+   external CDN. EB Garamond is the primary brand face (display + long-form
+   prose). Inter is the UI / metadata face.
+   ------------------------------------------------------------------------ */
+
+@font-face {
+  font-family: "Inter";
+  src: url("/assets/fonts/inter/Inter-Subset.woff2") format("woff2-variations");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Inter";
+  src: url("/assets/fonts/inter/Inter-Italic-Subset.woff2") format("woff2-variations");
+  font-weight: 100 900;
+  font-style: italic;
+  font-display: swap;
+}
+
+:root {
+  /* ===== Colour ========================================================= */
+
+  /* Primary accent — extracted from the blue bar in logo_full.png.        */
+  /* Sampled median: #10456B. Use sparingly: wordmark bar, primary button, */
+  /* link colour, single deliberate highlights. Not a decorative splash.   */
+  --color-accent:          #10456B;
+  --color-accent-hover:    #0B3553;  /* single-step darken for hover       */
+  --color-accent-tint:     #EEF2F6;  /* callout backgrounds only           */
+
+  /* Text */
+  --color-text-primary:    #2D2D2D;  /* body, headings                     */
+  --color-text-secondary:  #6B6B6B;  /* captions, metadata; 14px+ only     */
+  --color-text-inverse:    #FFFFFF;  /* on accent fills                    */
+
+  /* Surfaces */
+  --color-bg:              #FAFAFA;  /* page background                    */
+  --color-surface:         #FFFFFF;  /* minimal surface fill when needed   */
+
+  /* Borders */
+  --color-border:          #E0E0E0;  /* primary 1px rule                   */
+  --color-border-strong:   #2D2D2D;  /* rare — emphasis rule               */
+
+  /* Semantic aliases — components reference these, not the raw palette.  */
+  --fg-1: var(--color-text-primary);
+  --fg-2: var(--color-text-secondary);
+  --bg-1: var(--color-bg);
+  --bg-2: var(--color-surface);
+  --rule: var(--color-border);
+  --accent: var(--color-accent);
+
+  /* ===== Typography — families ==========================================
+     Single face: Inter (variable). Display, body, UI, metadata — all Inter.
+     Mono stack is retained for hashes, code, SSRN ids, timestamps.         */
+  --font-sans:   "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  --font-display: var(--font-sans);  /* alias — display headings            */
+  --font-mono:   ui-monospace, "SF Mono", "Menlo", "Consolas", "Fira Code", "JetBrains Mono", monospace;
+
+  /* ===== Typography — scale (modular, 1.25) ============================= */
+  /* Desktop sizes. Mobile overrides applied via media query below.        */
+  --fs-h1:       3rem;      /* 48px */
+  --fs-h2:       2.25rem;   /* 36px */
+  --fs-h3:       1.75rem;   /* 28px */
+  --fs-h4:       1.25rem;   /* 20px */
+  --fs-body:     1rem;      /* 16px — floor; never smaller for prose     */
+  --fs-meta:     0.875rem;  /* 14px — captions, metadata                 */
+  --fs-micro:    0.75rem;   /* 12px — mono eyebrow labels only           */
+
+  --lh-h1:       1.15;
+  --lh-h2:       1.2;
+  --lh-h3:       1.3;
+  --lh-h4:       1.4;
+  --lh-body:     1.65;
+  --lh-meta:     1.5;
+
+  --fw-regular:  400;
+  --fw-medium:   500;
+  --fw-semibold: 600;
+
+  --tracking-mono-eyebrow: 0.08em;
+
+  /* ===== Spacing scale ================================================== */
+  /* Closed set. No values between steps. Round to nearest, do not invent. */
+  --space-1:     4px;
+  --space-2:     8px;
+  --space-3:     16px;
+  --space-4:     24px;
+  --space-5:     32px;
+  --space-6:     48px;
+  --space-7:     64px;
+  --space-8:     96px;
+  --space-9:     128px;
+
+  /* ===== Line / content widths ========================================= */
+  --measure-prose:    680px;    /* article body max-width                 */
+  --measure-prose-lg: 720px;    /* upper bound                            */
+  --measure-page:     1200px;   /* landing / diagram sections             */
+
+  /* ===== Borders + radii ================================================ */
+  --border-1:    1px;
+  --border-2:    2px;
+  --radius-sm:   2px;
+  --radius-md:   4px;           /* ceiling — no softer cards              */
+
+  /* ===== Motion ========================================================= */
+  /* Restraint. No lift, no scale, no glow. Single-step colour change.    */
+  --transition-fast:  120ms linear;
+  --transition-base:  160ms linear;
+
+  /* ===== Layout ========================================================= */
+  --header-height: 64px;
+}
+
+/* ----- Mobile typographic overrides -------------------------------------
+   Body stays at 16px on every viewport — never scale down.
+   ------------------------------------------------------------------------ */
+@media (max-width: 720px) {
+  :root {
+    --fs-h1: 2rem;      /* 32px */
+    --fs-h2: 1.75rem;   /* 28px */
+    --fs-h3: 1.5rem;    /* 24px */
+    /* --fs-h4, --fs-body, --fs-meta unchanged                             */
+  }
+}
+
+/* ========================================================================
+   Element defaults — base reset scoped to design-system previews.
+   Apply via <body class="lintel"> on preview files; production pages may
+   opt in at their own scope.
+   ======================================================================== */
+
+body.lintel {
+  margin: 0;
+  padding: 0;
+  background: var(--bg-1);
+  color: var(--fg-1);
+  font-family: var(--font-sans);
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+body.lintel h1,
+body.lintel h2,
+body.lintel h3,
+body.lintel h4 {
+  font-family: var(--font-sans);
+  color: var(--fg-1);
+  margin: 0;
+  font-weight: var(--fw-semibold);
+  letter-spacing: -0.01em;
+}
+
+body.lintel h1 { font-size: var(--fs-h1); line-height: var(--lh-h1); font-weight: var(--fw-medium); letter-spacing: -0.02em; }
+body.lintel h2 { font-size: var(--fs-h2); line-height: var(--lh-h2); font-weight: var(--fw-medium); letter-spacing: -0.015em; }
+body.lintel h3 { font-size: var(--fs-h3); line-height: var(--lh-h3); }
+body.lintel h4 { font-size: var(--fs-h4); line-height: var(--lh-h4); }
+
+body.lintel p {
+  margin: 0 0 var(--space-3) 0;
+  font-family: var(--font-sans);
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+}
+
+body.lintel a {
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+  transition: color var(--transition-fast);
+}
+
+body.lintel a:hover {
+  color: var(--color-accent-hover);
+}
+
+body.lintel code,
+body.lintel .mono {
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+}
+
+body.lintel hr {
+  border: 0;
+  border-top: var(--border-1) solid var(--rule);
+  margin: var(--space-6) 0;
+}
+
+/* ----- Shared utility classes used across component previews ----------- */
+.lintel-eyebrow {
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  letter-spacing: var(--tracking-mono-eyebrow);
+  text-transform: uppercase;
+  color: var(--fg-2);
+}
+
+.lintel-meta {
+  font-family: var(--font-sans);
+  font-size: var(--fs-meta);
+  color: var(--fg-2);
+  line-height: var(--lh-meta);
+}
+
+.lintel-rule {
+  border: 0;
+  border-top: var(--border-1) solid var(--rule);
+  margin: 0;
+}
+
+.lintel-rule--strong {
+  border-top-color: var(--color-border-strong);
+}
+
+/* The blue-bar motif — horizontal accent used in SectionHead and OG card.*/
+.lintel-bluebar {
+  display: block;
+  width: 88px;
+  height: 10px;
+  background: var(--accent);
+}

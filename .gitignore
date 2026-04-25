@@ -1,0 +1,30 @@
+.DS_Store
+node_modules/
+*.log
+.lighthouseci/
+lighthouse-*.json
+BUILD_REPORT.md
+
+# Claude Code workspace
+.claude/
+
+# Heavy source-of-truth images (compressed/served versions live in assets/compressed/)
+assets/full_size/
+
+# Embedded-PNG SVG favicon (23 MB; not referenced anywhere)
+assets/favicon/favicon.svg
+
+# Unused Inter static weights — only the variable woff2 subset is loaded
+# (master prompt §8.1: "load only the variable TTF, not the static set")
+assets/fonts/inter/static/
+
+# OS metadata
+Thumbs.db
+ehthumbs.db
+Icon?
+
+# Editor
+.vscode/
+.idea/
+*.swp
+*~

@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Couldn&#39;t We Just Build This In-House? — Lintel Standard</title>
+<meta name="description" content="Sophisticated funds build in-house by default, and that default is usually right. The narrow ground on which a verification primitive is the exception — not the rule — is where the case for a third party gets made or doesn’t.">
+<link rel="canonical" href="https://lintelstandard.com/writing/build-in-house/">
+
+<meta property="og:type" content="article">
+<meta property="og:title" content="Couldn&#39;t We Just Build This In-House?">
+<meta property="og:description" content="Sophisticated funds build in-house by default, and that default is usually right. The narrow ground on which a verification primitive is the exception — not the rule — is where the case for a third party gets made or doesn’t.">
+<meta property="og:url" content="https://lintelstandard.com/writing/build-in-house/">
+<meta property="og:image" content="https://lintelstandard.com/assets/compressed/open_graph.jpg">
+<meta property="article:published_time" content="2026-04-04">
+<meta property="article:modified_time" content="2026-04-04">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Couldn&#39;t We Just Build This In-House?">
+<meta name="twitter:description" content="Sophisticated funds build in-house by default, and that default is usually right. The narrow ground on which a verification primitive is the exception — not the rule — is where the case for a third party gets made or doesn’t.">
+<meta name="twitter:image" content="https://lintelstandard.com/assets/compressed/open_graph.jpg">
+
+<link rel="icon" href="/assets/favicon/favicon.ico" sizes="any">
+<link rel="icon" href="/assets/favicon/favicon-96x96.png" type="image/png" sizes="96x96">
+<link rel="apple-touch-icon" href="/assets/favicon/apple-touch-icon.png">
+<link rel="manifest" href="/assets/favicon/site.webmanifest">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="/assets/fonts/inter/Inter-Subset.woff2">
+<link rel="stylesheet" href="/assets/css/colors_and_type.css">
+<link rel="stylesheet" href="/assets/css/site.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="header">
+  <div class="header__inner">
+    <a class="header__brand" href="/" aria-label="Lintel Standard, home">
+      <img src="/assets/compressed/logo-wordmark.png" alt="Lintel Standard" width="120" height="64">
+    </a>
+    <button class="header__nav-toggle" type="button" aria-expanded="false" aria-controls="primary-nav">Menu</button>
+    <nav id="primary-nav" class="header__nav" aria-label="Primary">
+      <a href="/technology/">Technology</a>
+      <a href="/writing/" aria-current="page">Writing</a>
+      <a href="/about/">About</a>
+    </nav>
+    <div class="header__spacer"></div>
+    <a class="header__cta" href="/contact/">Contact us</a>
+  </div>
+</header>
+
+<main id="main">
+  <article class="article">
+    <nav class="article-breadcrumb" aria-label="Breadcrumb">
+      <a href="/writing/">Writing</a>
+      <span class="sep">/</span>
+      <span>Couldn&#39;t We Just Build This In-House?</span>
+    </nav>
+
+    <header class="article-header">
+      <p class="article-header__cat">ARGUMENT</p>
+      <h1 class="article-header__h1">Couldn&#39;t We Just Build This In-House?</h1>
+      <p class="article-meta">
+        <a href="/about/">Kalle H. Fischer</a> — Founder, Lintel Standard
+        · Published 2026-04-04
+      </p>
+    </header>
+
+    <div class="article-rule"><hr></div>
+
+    <div class="article-body">
+      <h2>Sophisticated funds build in-house by default, and that default is usually right</h2>
+<p>The in-house question is the right question to take seriously, and a credible answer has to steel-man it before refuting it on a narrow and specific ground. Systematic funds build execution, risk, and attribution in-house for reasons that are not sentimental: control over the roadmap, protection of strategy IP from vendor exposure, and a rate of iteration no external provider will match (see <a href="https://www.janestreet.com/performance-engineering/" target="_blank" rel="noopener">Jane Street Performance Engineering</a> and <a href="https://www.twosigma.com/topic/engineering/" target="_blank" rel="noopener">Two Sigma Engineering</a>). When a quant team wants a new feature in its attribution engine, the answer is a commit, not a support ticket. The correct starting assumption for any new infrastructure conversation at a systematic fund is “build,” not &quot;buy.&quot;janestreet+1</p>
+<p>A disclosure before I go further: Lintel builds cryptographic strategy verification infrastructure, so I have a commercial stake in how readers answer this question. Consider the source.</p>
+<p>The question worth asking, then, is narrower than build-vs-buy in general. It is whether strategy verification is one of the rare fund functions where the default inverts. The claim here is that it does: strategy verification built for external use cannot be built in-house, because independence cannot be self-supplied. I call this the self-attestation cap — the ceiling that sits on any output produced and verified by the same entity, regardless of engineering talent or the cryptography beneath it. It is the same phenomenon I have called the Proof-Execution Gap [CITE: Article #2 — Proof-Execution Gap], viewed from the build-vs-buy side.</p>
+<h2>Self-attestation has zero information content to external parties</h2>
+<p>A fund that verifies its own backtest produces nothing an allocator, auditor, or counterparty can act on, for the same structural reason a firm auditing its own financial statements produces nothing a regulator can act on. The relevant frame is information content to external parties, not “does the code work.” When producer and verifier are the same entity, the external reader cannot distinguish an honest output from a manipulated one without trusting the producer — the thing the verification was supposed to make unnecessary.</p>
+<p>I have written about the Strategy Verification Maturity Model elsewhere [CITE: Article #1 — Strategy Verification Maturity Model, Level 1 cap], and the feature that matters here is its lowest rung. Level 1 is self-attestation: the fund runs the numbers, signs the output, and hands it over. Take the strongest internal-rigor case: a fund builds an audited TEE pipeline, contracts a Big Four firm to review the code, publishes hashes of its build artifacts, and commissions a crypto-research group to audit the attestation protocol. The output still carries the self-attestation cap, because the fund owns the keys that sign it, the hardware that produces it, and the verifier that checks it. Producer and verifier are the same entity, and no amount of internal rigor breaks that identity.</p>
+<p>Audit practice has encoded this as a first-order requirement for about a century. Both <a href="https://catalogimages.wiley.com/images/db/pdf/9781119789642.excerpt.pdf" target="_blank" rel="noopener">AICPA AU-C §200</a> and <a href="https://audit.gov.az/uploads/a008-2010-iaasb-handbook-isa-200.pdf" target="_blank" rel="noopener">IAASB ISA 200</a> treat auditor independence as a gating criterion for an audit to count as an audit at all. The reason is not that auditors are untrustworthy. It is that the output of an audit — a statement consumed by someone who did not produce the underlying numbers — requires a verifier who is not the audited party. An audit by the CFO is a review, not an audit, no matter how diligent the CFO.catalogimages.wiley+1</p>
+<p>The translation to strategy verification is direct. An allocator, ODD consultant, or fund-of-funds reviewing a cryptographically-attested performance claim is asking the regulator’s question about audited statements: what independent party stands behind this? If the only party standing behind it is the producer, the statement’s information content to the external reader is zero, regardless of the sophistication of the cryptography beneath it.</p>
+<h2>Building this in-house actually means building an open industry standard in-house</h2>
+<p>The actual scope of “building this” is not a proprietary internal tool. It is what I call the Open Verification Stack: four components that together produce an output an external reader can treat as evidence. Each is a design requirement I am proposing, not a settled industry fact.</p>
+<p>The first is a hardware-attested trusted-execution pipeline — a computation environment inside a CPU’s secure enclave that cryptographically signs a statement about what code it ran, with a key the fund does not control (see <a href="https://www.amd.com/content/dam/amd/en/documents/epyc-business-docs/white-papers/SEV-SNP-strengthening-vm-isolation-with-integrity-protection-and-more.pdf" target="_blank" rel="noopener">AMD SEV-SNP whitepaper</a> and the <a href="https://www.intel.com/content/dam/develop/external/us/en/documents/tdx-whitepaper-final9-17.pdf" target="_blank" rel="noopener">Intel TDX whitepaper</a>). The second is a content-addressed strategy specification language — a format in which a strategy is described and hashed so two parties can agree on exactly what ran by comparing hashes, without either seeing the other’s source. The third is an independent verifier ecosystem: parties who check attestations and whose correctness is examined by someone other than the fund whose claims they verify. The fourth is an externally-maintained standard: a format and protocol governed by a body that is not the fund.intel+1</p>
+<p>Any one of these, built solely by the fund, collapses the independence property of the output.</p>
+<p>The strongest bootstrap counter is that a fund can build the Open Verification Stack privately first and externalise governance later once adoption justifies the cost. Infrastructure is routinely built this way: build closed, open after traction. It does not work for this buyer. The allocator evaluating a manager during a 6–12 month diligence cycle is not waiting for governance to be externalised next year; the decision is made now, against the stack as it exists now, with key, verifier, and standard still fund-controlled. During that window, the output is self-attested, and the allocator treats it accordingly. Governance, not engineering effort, is the binding constraint.</p>
+<p>The analogues are specific. PDF became the universal document exchange only after Adobe handed it to <a href="https://www.iso.org/standard/51502.html" target="_blank" rel="noopener">ISO 32000-1:2008</a>. FIX Protocol became the institutional messaging standard only after it escaped Salomon Brothers and Fidelity into the <a href="https://www.fixtrading.org/the-long-journey-to-frictionless-electronic-trading/" target="_blank" rel="noopener">FIX Trading Community</a>. The format was credible to parties downstream of the originator only once the originator stopped being the only party standing behind it.fixtrading+1</p>
+<p>The honest framing of the in-house build, therefore, is not “we will build a verification tool.” It is “we will fund the creation of an open industry standard we happen to use first.” That is a different economic commitment: not a line item in the engineering budget but a governance undertaking with a multi-year horizon and a nonzero chance that some other fund’s internal build becomes the winning format instead.</p>
+<h2>Verification is audit, not analytics</h2>
+<p>Verification belongs in the audit category because its output requires independence from the producer. Analytics belongs in the internal-build category because its output serves the producer.</p>
+<p>Funds build their own risk systems, attribution engines, and performance dashboards, and they are right to. The output is consumed inside the fund, by portfolio managers and risk officers and CIOs who need it. No external party is asked to treat the output as evidence, no independence property is required, and building in-house maximises roadmap control and IP protection.</p>
+<p>The strongest objection to this split is that funds already produce externally-consumed artifacts in-house every day: monthly client letters, risk reports to allocators, NAV estimates. None are outsourced. Why is strategy verification different? The answer lies in what the external reader does with the artifact. A client letter narrates results the allocator re-verifies through the independent administrator, the audited financials, and prime-broker reports. The letter is commentary, not the evidence. Strategy verification is different because the cryptographic attestation is meant to be the evidence — the artifact the allocator relies on without a separate independent re-verification layer. When the artifact IS the evidence, the producer cannot sign it. That rule is the core of auditor independence in <a href="https://catalogimages.wiley.com/images/db/pdf/9781119789642.excerpt.pdf" target="_blank" rel="noopener">AICPA AU-C §200</a>, <a href="https://audit.gov.az/uploads/a008-2010-iaasb-handbook-isa-200.pdf" target="_blank" rel="noopener">IAASB ISA 200</a>, and <a href="https://www.ecfr.gov/current/title-17/chapter-II/part-210/subject-group-ECFR2f5dcb24c1c571e/section-210.2-01" target="_blank" rel="noopener">SEC Regulation S-X Rule 2-01 (17 CFR §210.2-01)</a>.ecfr+2</p>
+<p>The consumers of a Strategy Verification Package — the cryptographically-signed, tamper-evident proof that a strategy produced a claimed result — are allocators running due diligence, ODD consultants advising them, and counterparties pricing credit risk. The concrete diligence consequence: an ODD reviewer handed a verification package checks who holds the signing key, who built the verifier, and whether the attestation format is governed by a body independent of the manager. If any of those three answers points back to the fund, the package is treated as a self-report, and the reviewer falls back on artifacts produced by independent administrators and auditors.</p>
+<p>The test for which side a given function sits on is a two-part question: who consumes the output, and does that consumer trust the producer to self-certify? If the second answer is no, the function belongs in the audit category, and audit functions are not in-house builds [CITE: Article #2 — audit analogy, already established].</p>
+<h2>A private in-house build is valid engineering and dead-end for external adoption</h2>
+<p>A sufficiently large fund with deep confidential-computing expertise can ship a technically-sound private equivalent of this stack. I will not pretend otherwise. Some top-tier systematic funds have the TEE engineers, cryptography PhDs, and formal-methods capability to produce a private attestation pipeline that would survive an engineering review from anyone in the field.</p>
+<p>The concession I am not making is that this solves the problem. The output of the best private build still fails the test from Section 2, because three control points remain inside the fund. The signing key is fund-controlled: the TEE attestation chains to a root the fund owns or selects. The verifier is fund-controlled: the software reading and validating the attestation is written and run by the fund. The standard is fund-controlled: the spec describing what a valid verification package looks like is maintained by the fund. Each is sufficient on its own to make the output self-attested. Independence is a property of the output, determined by who controls those three points; excellent code cannot produce it.</p>
+<p>The split is therefore engineering-valid and dead-end for external adoption by allocators, ODD consultants, and procurement committees. The system works as a self-attested artifact that closes the Proof-Execution Gap inside the fund and does not close it for anyone outside it. A fund considering this route should ask itself, before committing the engineering quarters, the diligence question an allocator or ODD reviewer will ask of the output: who controls the signing key, who controls the verifier, and who governs the standard. If all three answers are “we do,” what action by which external counterparty does our in-house attestation enable that self-reporting did not already enable?</p>
+
+    </div>
+
+  </article>
+
+  <section class="section more-writing" aria-labelledby="more-writing-h">
+    <div class="container">
+      <div class="section-head">
+        <p class="section-head__eyebrow">CONTINUE READING</p>
+        <span class="section-head__bar" aria-hidden="true"></span>
+        <h2 class="section-head__title" id="more-writing-h">More writing</h2>
+      </div>
+      <div class="article-grid">
+        <a class="article-card" href="/writing/defense-in-depth/">
+          <p class="article-card__meta">2026-04-25 · TECHNICAL</p>
+          <h3 class="article-card__title">Defense in Depth for Attested Execution</h3>
+          <p class="article-card__excerpt">Trusted Execution Environments have a published record of serious, remotely exploitable vulnerabilities. The right question is what survives a TEE break, not whether TEEs can break — and the answer determines what a verification platform owes its readers.</p>
+        </a>
+        <a class="article-card" href="/writing/tees-vs-zk-mpc-fhe/">
+          <p class="article-card__meta">2026-04-18 · TECHNICAL</p>
+          <h3 class="article-card__title">Why TEEs — Not ZK, MPC, or FHE</h3>
+          <p class="article-card__excerpt">TEEs are not the strongest cryptographic primitive when measured against zero-knowledge proofs, secure multiparty computation, or fully homomorphic encryption. The question is which one closes the Proof-Execution Gap today, on commodity hardware, at the latency a systematic strategy requires.</p>
+        </a>
+        <a class="article-card" href="/writing/offline-verifiability/">
+          <p class="article-card__meta">2026-04-11 · TECHNICAL</p>
+          <h3 class="article-card__title">Offline Verifiability: Architectural, Not Contractual</h3>
+          <p class="article-card__excerpt">Code escrow, bankruptcy-remote SPVs, and multi-year survival clauses keep a vendor operating through distress. None of them keeps a verification artifact independently checkable once the vendor is gone. Verifiability has to be architectural, not contractual.</p>
+        </a>
+      </div>
+      <p class="see-all"><a href="/writing/">See all writing →</a></p>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="footer__inner">
+    <div class="footer__mark">
+      <img src="/assets/compressed/logo-mark.png" alt="Lintel Standard" width="80" height="64">
+    </div>
+    <div class="footer__links">
+      <a href="mailto:contact@lintelstandard.com">contact@lintelstandard.com</a>
+      <a href="https://ssrn.com/abstract=6090766" target="_blank" rel="noopener">SSRN 6090766 — OVL</a>
+      <a href="https://ssrn.com/abstract=6388459" target="_blank" rel="noopener">SSRN 6388459 — CVP</a>
+      <a href="/trust/">Trust</a>
+    </div>
+    <div class="footer__copy">© 2026 Lintel Standard, Inc.</div>
+  </div>
+</footer>
+
+<script>
+  document.querySelector('.header__nav-toggle')?.addEventListener('click', function() {
+    var nav = document.getElementById('primary-nav');
+    var open = nav.dataset.open === 'true';
+    nav.dataset.open = open ? 'false' : 'true';
+    this.setAttribute('aria-expanded', open ? 'false' : 'true');
+  });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Trust and standards alignment — Lintel Standard</title>
+<meta name="description" content="Standards and specifications Lintel's architecture aligns with by design. Named as references, not endorsements or audit results.">
+<meta name="robots" content="noindex, follow">
+<link rel="canonical" href="https://lintelstandard.com/trust/">
+
+<link rel="icon" href="/assets/favicon/favicon.ico" sizes="any">
+<link rel="icon" href="/assets/favicon/favicon-96x96.png" type="image/png" sizes="96x96">
+<link rel="apple-touch-icon" href="/assets/favicon/apple-touch-icon.png">
+<link rel="manifest" href="/assets/favicon/site.webmanifest">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="/assets/fonts/inter/Inter-Subset.woff2">
+<link rel="stylesheet" href="/assets/css/colors_and_type.css">
+<link rel="stylesheet" href="/assets/css/site.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="header">
+  <div class="header__inner">
+    <a class="header__brand" href="/" aria-label="Lintel Standard, home">
+      <img src="/assets/compressed/logo-wordmark.png" alt="Lintel Standard" width="120" height="64">
+    </a>
+    <button class="header__nav-toggle" type="button" aria-expanded="false" aria-controls="primary-nav">Menu</button>
+    <nav id="primary-nav" class="header__nav" aria-label="Primary">
+      <a href="/technology/">Technology</a>
+      <a href="/writing/">Writing</a>
+      <a href="/about/">About</a>
+    </nav>
+    <div class="header__spacer"></div>
+    <a class="header__cta" href="/contact/">Contact us</a>
+  </div>
+</header>
+
+<main id="main">
+
+  <section class="section">
+    <div class="container">
+      <div class="prose">
+        <div class="section-head">
+          <p class="section-head__eyebrow">STANDARDS</p>
+          <span class="section-head__bar" aria-hidden="true"></span>
+          <h1 class="section-head__title section-head__title--h1">Trust and standards alignment</h1>
+        </div>
+        <p class="lead">Lintel Standard, Inc. is pre-seed. The company does not currently hold formal compliance certifications, and this page does not claim any. A future version of this page will list certifications, audit reports, and operational security documentation as they become available.</p>
+        <p class="lead">In the meantime, this page names the standards and specifications Lintel's architecture aligns with by design. These are named as references, not as endorsements or audit results.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="aligned-standards">
+    <div class="container">
+      <div class="prose">
+        <div class="section-head">
+          <p class="section-head__eyebrow">REFERENCE SET</p>
+          <span class="section-head__bar" aria-hidden="true"></span>
+          <h2 class="section-head__title">Aligned standards and specifications</h2>
+        </div>
+        <ul class="standards-list">
+          <li>
+            <span class="name">IETF RATS</span>
+            <span class="desc">Remote Attestation Procedures — the IETF working group's architecture for verifying claims from remote systems.</span>
+          </li>
+          <li>
+            <span class="name">Confidential Computing Consortium Principles</span>
+            <span class="desc">Industry reference framework for confidential-computing deployments.</span>
+          </li>
+          <li>
+            <span class="name">AICPA SOC 2 Trust Services Criteria</span>
+            <span class="desc">The criteria framework (Security, Availability, Confidentiality) informing Lintel's internal controls posture. Lintel is not SOC 2 audited at this time.</span>
+          </li>
+          <li>
+            <span class="name">ISO/IEC 27001 control objectives</span>
+            <span class="desc">Information-security control objectives referenced in Lintel's internal design. Lintel is not ISO 27001 certified at this time.</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="security-questions">
+    <div class="container">
+      <div class="prose">
+        <div class="section-head">
+          <p class="section-head__eyebrow">CONTACT</p>
+          <span class="section-head__bar" aria-hidden="true"></span>
+          <h2 class="section-head__title">Security questions</h2>
+        </div>
+        <p class="body-prose">Security-specific questions, vulnerability disclosures, and detailed technical inquiries can be directed to <a href="mailto:kalle@lintelstandard.com">kalle@lintelstandard.com</a>. General inquiries should use the <a href="/contact/">contact page</a>.</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="footer__inner">
+    <div class="footer__mark">
+      <img src="/assets/compressed/logo-mark.png" alt="Lintel Standard" width="80" height="64">
+    </div>
+    <div class="footer__links">
+      <a href="mailto:contact@lintelstandard.com">contact@lintelstandard.com</a>
+      <a href="https://ssrn.com/abstract=6090766" target="_blank" rel="noopener">SSRN 6090766 — OVL</a>
+      <a href="https://ssrn.com/abstract=6388459" target="_blank" rel="noopener">SSRN 6388459 — CVP</a>
+      <a href="/trust/">Trust</a>
+    </div>
+    <div class="footer__copy">© 2026 Lintel Standard, Inc.</div>
+  </div>
+</footer>
+
+<script>
+  document.querySelector('.header__nav-toggle')?.addEventListener('click', function() {
+    var nav = document.getElementById('primary-nav');
+    var open = nav.dataset.open === 'true';
+    nav.dataset.open = open ? 'false' : 'true';
+    this.setAttribute('aria-expanded', open ? 'false' : 'true');
+  });
+</script>
+
+</body>
+</html>

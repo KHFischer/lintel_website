@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Why TEEs — Not ZK, MPC, or FHE — Lintel Standard</title>
+<meta name="description" content="TEEs are not the strongest cryptographic primitive when measured against zero-knowledge proofs, secure multiparty computation, or fully homomorphic encryption. The question is which one closes the Proof-Execution Gap today, on commodity hardware, at the latency a systematic strategy requires.">
+<link rel="canonical" href="https://lintelstandard.com/writing/tees-vs-zk-mpc-fhe/">
+
+<meta property="og:type" content="article">
+<meta property="og:title" content="Why TEEs — Not ZK, MPC, or FHE">
+<meta property="og:description" content="TEEs are not the strongest cryptographic primitive when measured against zero-knowledge proofs, secure multiparty computation, or fully homomorphic encryption. The question is which one closes the Proof-Execution Gap today, on commodity hardware, at the latency a systematic strategy requires.">
+<meta property="og:url" content="https://lintelstandard.com/writing/tees-vs-zk-mpc-fhe/">
+<meta property="og:image" content="https://lintelstandard.com/assets/compressed/open_graph.jpg">
+<meta property="article:published_time" content="2026-04-18">
+<meta property="article:modified_time" content="2026-04-18">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Why TEEs — Not ZK, MPC, or FHE">
+<meta name="twitter:description" content="TEEs are not the strongest cryptographic primitive when measured against zero-knowledge proofs, secure multiparty computation, or fully homomorphic encryption. The question is which one closes the Proof-Execution Gap today, on commodity hardware, at the latency a systematic strategy requires.">
+<meta name="twitter:image" content="https://lintelstandard.com/assets/compressed/open_graph.jpg">
+
+<link rel="icon" href="/assets/favicon/favicon.ico" sizes="any">
+<link rel="icon" href="/assets/favicon/favicon-96x96.png" type="image/png" sizes="96x96">
+<link rel="apple-touch-icon" href="/assets/favicon/apple-touch-icon.png">
+<link rel="manifest" href="/assets/favicon/site.webmanifest">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="/assets/fonts/inter/Inter-Subset.woff2">
+<link rel="stylesheet" href="/assets/css/colors_and_type.css">
+<link rel="stylesheet" href="/assets/css/site.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="header">
+  <div class="header__inner">
+    <a class="header__brand" href="/" aria-label="Lintel Standard, home">
+      <img src="/assets/compressed/logo-wordmark.png" alt="Lintel Standard" width="120" height="64">
+    </a>
+    <button class="header__nav-toggle" type="button" aria-expanded="false" aria-controls="primary-nav">Menu</button>
+    <nav id="primary-nav" class="header__nav" aria-label="Primary">
+      <a href="/technology/">Technology</a>
+      <a href="/writing/" aria-current="page">Writing</a>
+      <a href="/about/">About</a>
+    </nav>
+    <div class="header__spacer"></div>
+    <a class="header__cta" href="/contact/">Contact us</a>
+  </div>
+</header>
+
+<main id="main">
+  <article class="article">
+    <nav class="article-breadcrumb" aria-label="Breadcrumb">
+      <a href="/writing/">Writing</a>
+      <span class="sep">/</span>
+      <span>Why TEEs — Not ZK, MPC, or FHE</span>
+    </nav>
+
+    <header class="article-header">
+      <p class="article-header__cat">TECHNICAL</p>
+      <h1 class="article-header__h1">Why TEEs — Not ZK, MPC, or FHE</h1>
+      <p class="article-meta">
+        <a href="/about/">Kalle H. Fischer</a> — Founder, Lintel Standard
+        · Published 2026-04-18
+      </p>
+    </header>
+
+    <div class="article-rule"><hr></div>
+
+    <div class="article-body">
+      <h2>The question is not which cryptographic primitive is strongest in the abstract but which one closes the Proof-Execution Gap today</h2>
+<p>A version of this question comes up in most crypto-native technical VC conversations I have: why TEEs and not zero-knowledge proofs, or secure multiparty computation, or fully homomorphic encryption? TEEs are not the strongest cryptographic primitive in this comparison. A reader whose objective is to minimise trust in hardware vendors and supply chains should pick ZK over a TEE. What TEEs win on is different. Strategy verification — mechanically binding what a quantitative manager claims their logic did to what the logic actually did, the Proof-Execution Gap as defined in the <a href="https://papers.ssrn.com/abstract=6090766" target="_blank" rel="noopener">Lintel CVP paper (SSRN 6090766)</a> — is a specific use case with three binding constraints: the trust root a verifier must accept, the compute cost of producing and checking a proof on realistic strategy workloads, and the deployability of the toolchain on 2026 hardware with 2026 staffing. On all three today, TEEs win. I build Lintel Standard in this space, so consider the source. The rest of this piece is the trade-off, one primitive at a time.</p>
+<h2>Strategy verification sits at the intersection of three axes: soundness, throughput, and deployability</h2>
+<p>Any primitive for strategy verification in 2026 fails on at least one of three axes. Call this the Verification Trilemma: soundness, throughput, and deployability.</p>
+<p>Soundness sets what a verifier must trust. A scheme that resists a malicious hypervisor with physical access is stronger than one that resists only a passive network adversary, a distinction formalised in the <a href="https://confidentialcomputing.io/wp-content/uploads/sites/10/2023/03/CCC-A-Technical-Analysis-of-Confidential-Computing-v1.3_unlocked.pdf" target="_blank" rel="noopener">Confidential Computing Consortium’s technical analysis</a>; a single word (“secure”) conceals the difference.<a href="https://re.public.polimi.it/bitstream/11311/1272466/1/CC_Survey_ITASEC%20(3).pdf" target="_blank" rel="noopener">polimi</a></p>
+<p>Throughput sets how much compute it costs to produce and check a proof for a realistic strategy workload — not a toy circuit, not a microbenchmark, but a signal pipeline with dozens of operators over years of daily or intraday data. Walsh and Paul measured 6–20% overhead for TEE-based verification against 100–1000× for ZKP-based verification on comparable complex logic in 2017. This axis is where theoretical arguments meet production reality, and it is the axis most often elided by schemes that are strictly stronger on soundness.</p>
+<p>Deployability sets what hardware and toolchain exist in 2026 and how many people can be hired to write and audit code against them. Confidential VMs are productised today in <a href="https://docs.aws.amazon.com/enclaves/latest/user/nitro-enclave.html" target="_blank" rel="noopener">AWS Nitro Enclaves</a>, <a href="https://learn.microsoft.com/en-us/azure/virtual-machines/sizes/general-purpose/dcasv5-series" target="_blank" rel="noopener">Azure DCasv5/ECasv5</a>, and <a href="https://cloud.google.com/confidential-computing/confidential-vm/docs/about-cvm" target="_blank" rel="noopener">GCP Confidential VM</a>; general-purpose zkVMs for operator-graph workloads of strategy-pipeline size remain research-grade, as shown in <a href="https://eprint.iacr.org/2023/1217" target="_blank" rel="noopener">Arun, Setty, and Thaler’s Jolt paper (ePrint 2023/1217)</a> and the broader <a href="https://a16zcrypto.com/posts/" target="_blank" rel="noopener">a16z crypto research corpus</a>.</p>
+<p>The strongest objection to the Verification Trilemma is that soundness should dominate — an unsound proof is not a proof, and the other two axes are secondary to that. I reject this framing for strategy verification in 2026, because no unsound option is on the table. A TEE-attested execution under current-TCB SEV-SNP or TDX policy is sound against the adversary that matters to an allocator: a manager with root on the host who wants to misreport strategy behaviour. It is sound against a weaker adversary set than ZK, but it is sound against the one relevant here. Throughput and deployability then decide between two sound-against-the-relevant-adversary options, which makes them dispositive, not secondary.</p>
+<p>No primitive I know of wins all three axes of the Verification Trilemma for strategy verification today.</p>
+<h2>ZK proofs win on soundness but prover cost on realistic strategy circuits is orders of magnitude from the required throughput</h2>
+<p>A zero-knowledge proof (ZK proof) lets a prover convince a verifier that a statement is true without revealing anything beyond the truth of the statement itself. SNARKs (succinct non-interactive arguments of knowledge) produce small, fast-to-verify proofs at the cost of an elaborate prover step and, in most constructions, a trusted setup ceremony, as shown in <a href="https://eprint.iacr.org/2016/260" target="_blank" rel="noopener">Groth’s 2016 pairing-based argument (ePrint 2016/260)</a> and <a href="https://eprint.iacr.org/2019/953" target="_blank" rel="noopener">Gabizon, Williamson, and Ciobotaru’s PLONK (ePrint 2019/953)</a>. STARKs (scalable transparent arguments of knowledge) remove the trusted setup at the cost of larger proofs and different complexity trade-offs, as set out in <a href="https://eprint.iacr.org/2018/046" target="_blank" rel="noopener">Ben-Sasson, Bentov, Horesh, and Riabzev’s 2018 paper (ePrint 2018/046)</a>.</p>
+<p>The steel-man for ZK is straightforward, and I hold it seriously. A ZK-proved computation has no hardware root of trust. A verifier does not have to believe that AMD or Intel signed what they claim to have signed, does not have to rely on firmware version gates, does not have to accept that a specific confidential-VM image is running what its measurement says it is running. The proof is the proof. STARKs add public verifiability without ceremonial assumptions. For an adversary model that includes the chip vendor, the hardware supply chain, and every side channel not yet disclosed, ZK is strictly stronger than a TEE-attested execution. I am not going to pretend otherwise.</p>
+<p>What ZK does not have today is throughput on the specific shape of computation strategy verification requires. A realistic institutional strategy pipeline is a cross-sectional operator graph applied to daily or intraday data over years of history, often with hundreds of operators and state tracking across windows. Three structural properties of this shape break present-day proving economics. First, long execution traces: ten years of daily data on a thousand-ticker universe traces through millions of rows per signal path, and general-purpose zkVM prover cost scales with trace length, as documented in <a href="https://eprint.iacr.org/2023/1217" target="_blank" rel="noopener">the Jolt paper</a> and the <a href="https://dev.risczero.com/api/" target="_blank" rel="noopener">RISC Zero developer documentation</a>. Second, stateful rolling windows force the circuit to commit to window contents cycle by cycle rather than amortise across independent rows. Third, signal pipelines are floating-point over real numbers while proving systems are cheapest over small prime fields, so values have to be encoded as field-native fixed-point, adding multiplicative depth per operator (<a href="https://pythonbindings.ezkl.xyz/en/v11.4.2/" target="_blank" rel="noopener">EZKL framework documentation on fixed-point quantization</a>). The composite is the 100–1000× overhead band Walsh and Paul measured on complex general-purpose logic, and I am not aware of a 2024–2026 benchmark on a comparable operator-graph workload that shrinks that band below 50× even on GPU-accelerated provers (<a href="https://blog.icme.io/the-definitive-guide-to-zkml-2025/" target="_blank" rel="noopener">ICME 2025 ZKML Prover Overhead Benchmarks</a>).</p>
+<p>Whether managers and allocators will tolerate that overhead band is a separate question from the overhead itself, and I will not smuggle behavioural claims in as fact. What I can say concretely is that at 100× overhead, a daily research iteration lengthens by the same factor; at 1000× overhead, intraday drift verification on a single trading day becomes a multi-day batch job.</p>
+<p>The direction of travel is real. Recursion, folding schemes, hardware-accelerated provers, and circuit-friendly arithmetisations have cut prover cost by meaningful factors in the last three years, with <a href="https://eprint.iacr.org/2021/370" target="_blank" rel="noopener">Kothapalli, Setty, and Tzialla’s Nova folding scheme (ePrint 2021/370)</a> and <a href="https://eprint.iacr.org/2023/1217" target="_blank" rel="noopener">Jolt</a> representative of that trajectory. My honest five-to-ten-year outlook is that ZK becomes viable for this use case, not that it is viable now. Building strategy verification in 2026 around ZK is building on the promise of prover efficiency, not on its current profile.</p>
+<h2>MPC is stronger on IP preservation under a specific threat model but the party-selection problem is operationally expensive</h2>
+<p>Secure multiparty computation (MPC) lets a set of parties jointly compute a function over their private inputs such that no party learns anything beyond the output. The protocol families I will reference are Yao’s garbled circuits, GMW, and SPDZ, introduced in <a href="https://ieeexplore.ieee.org/document/4568207" target="_blank" rel="noopener">Yao’s 1986 paper</a>, <a href="https://dl.acm.org/doi/10.1145/28395.28420" target="_blank" rel="noopener">Goldreich, Micali, and Wigderson’s 1987 paper</a>, and <a href="https://eprint.iacr.org/2011/535" target="_blank" rel="noopener">Damgård, Pastro, Smart, and Zakarias’s SPDZ (ePrint 2011/535)</a>.</p>
+<p>The steel-man for MPC in strategy verification is that, under an honest-majority or dishonest-minority threat model, no single party ever sees the strategy in the clear. The computation runs on secret shares; the manager’s logic is split across participants, and collusion below the protocol’s threshold produces nothing. Compared to a TEE, which concentrates trust in silicon, MPC distributes trust across participants. For an adversary model that treats hardware vendors as untrusted but is willing to assume a subset of human institutions do not collude, MPC is the cleaner answer.</p>
+<p>Call this the party-selection problem. Take a three-allocator setup as a concrete example: an emerging manager splits shares of a strategy across a sovereign wealth fund, a multi-manager platform, and a family office consortium. Three operational costs follow. Collusion risk between institutions with incompatible mandates is low but irreducible, and the manager has no post-facto mechanism to detect below-threshold collusion. Availability risk is concrete — any two participants offline at proof-generation time under a 2-of-3 honest-majority protocol blocks the manager’s verification queue. Governance risk sits upstream of both — each allocator’s legal and compliance team negotiates secret-sharing terms separately, and a single redline (“we will not hold shares of anything whose decryption could expose our firm to litigation”) unwinds the protocol. The party-selection problem does not remove the trust question; it relocates it from “trust this chip” to “trust that this participant set will not collude, will not be compromised simultaneously, will remain available, and will govern itself in the ways its charter promises.” Whether emerging managers in 2026 accept that relocated trust shape is an empirical question I do not have survey data on, and I will not pretend to.</p>
+<p>Communication cost is the second operational tax. SPDZ-class protocols on realistic strategy-workload sizes produce communication volumes that scale with circuit size and round count, and recent MPC-for-machine-learning benchmarks in <a href="https://eprint.iacr.org/2020/521" target="_blank" rel="noopener">Keller’s MP-SPDZ framework (ePrint 2020/521)</a> and <a href="https://github.com/facebookresearch/CrypTen" target="_blank" rel="noopener">Facebook Research’s CrypTen</a> show multi-minute to multi-hour run times on workloads still smaller than a production strategy pipeline.</p>
+<p>MPC is not strictly weaker than TEEs and it is not strictly stronger. It is a different trade-off shape: cheaper on hardware assumptions, more expensive on the party-selection problem and on communication cost.</p>
+<h2>FHE is strongest on the secrecy guarantee but current throughput is orders of magnitude from production strategy workloads</h2>
+<p>Fully homomorphic encryption (FHE) lets a third party compute arbitrary functions on encrypted data without decrypting it. CKKS handles approximate arithmetic on real numbers and is the natural fit for statistical workloads; BGV and BFV handle exact arithmetic over integer rings, as set out in <a href="https://eprint.iacr.org/2016/421" target="_blank" rel="noopener">Cheon, Kim, Kim, and Song’s CKKS (ePrint 2016/421)</a>, <a href="https://eprint.iacr.org/2011/277" target="_blank" rel="noopener">Brakerski, Gentry, and Vaikuntanathan’s BGV (ePrint 2011/277)</a>, and <a href="https://eprint.iacr.org/2012/144" target="_blank" rel="noopener">Fan and Vercauteren’s BFV (ePrint 2012/144)</a>.</p>
+<p>The steel-man for FHE is the strongest secrecy guarantee in this comparison. The ciphertext never decrypts outside the data owner’s boundary. The cloud, the verifier, the protocol participants — none of them ever holds plaintext. For a manager who will not let a strategy leave their cryptographic custody under any threat model, FHE is the only primitive in this piece that honors that constraint.</p>
+<p>The reason I do not build on FHE today is throughput. Homomorphic operations are orders of magnitude slower than their plaintext equivalents, the cost compounds with multiplicative depth, and bootstrapping — the refresh operation that lets an FHE scheme keep computing past a noise budget — is the structural bottleneck. Three components of a strategy-verification pipeline drive this cost especially hard. Cross-sectional ranking and ordering operators, common in factor construction, are comparison-heavy, and comparisons under CKKS require polynomial approximation at meaningful multiplicative depth per comparison, as the <a href="https://openfhe-development.readthedocs.io/" target="_blank" rel="noopener">OpenFHE documentation</a> and <a href="https://eprint.iacr.org/2018/421" target="_blank" rel="noopener">Chillotti et al.'s TFHE (ePrint 2018/421)</a> describe. Rolling-window statistics across years of daily data accumulate multiplicative depth with window length, pushing bootstrapping frequency up. And mixing integer-indexed dataset lookups (by ticker and date) with real-valued arithmetic crosses FHE scheme boundaries (BFV/BGV for exact indexing, CKKS for approximate arithmetic), and scheme-switching is an active research area, not a deployed primitive (<a href="https://research.ibm.com/publications/on-the-hardness-of-scheme-switching-between-simd-fhe-schemes" target="_blank" rel="noopener">IBM Research: On the Hardness of Scheme-Switching Between SIMD FHE Schemes</a>). Per-operation benchmarks from <a href="https://github.com/microsoft/SEAL" target="_blank" rel="noopener">Microsoft SEAL</a> and <a href="https://github.com/openfheorg/openfhe-development" target="_blank" rel="noopener">OpenFHE</a>, composed into a full pipeline of this shape, put daily recomputation of a modest-universe signal in the multi-day to multi-week range on current hardware, against plaintext baselines of seconds to minutes.</p>
+<p>This rules FHE out as a near-term option for strategy verification in the way ZK is also ruled out, and for the same structural reason: the prover-side compute cost is not close enough to the plaintext baseline. My reading of current benchmarks and research trajectories is that FHE needs another five to ten years, possibly more, before its throughput on this pipeline shape sits inside production tolerance. That is a judgment call, not a fact, and I hold it loosely enough to revise when a benchmark changes it. What I will not do is build production infrastructure in 2026 on its current profile.</p>
+<h2>TEEs trade a hardware trust root for near-native throughput and a mature deployment path that fits the use case today</h2>
+<p>A trusted execution environment (TEE) is a hardware-isolated execution context that encrypts its own memory, resists observation by the host operating system and hypervisor, and emits signed attestation reports binding a measurement of its loaded code to a hardware-rooted key, as specified in <a href="https://www.amd.com/content/dam/amd/en/documents/epyc-business-docs/white-papers/SEV-SNP-strengthening-vm-isolation-with-integrity-protection-and-more.pdf" target="_blank" rel="noopener">AMD’s SEV-SNP whitepaper (January 2020)</a> and <a href="https://www.intel.com/content/www/us/en/developer/tools/trust-domain-extensions/overview.html" target="_blank" rel="noopener">Intel’s TDX architecture overview</a>.</p>
+<p>I want to name the cost before naming the benefits, because the conceded-nothing rebuttal is the failure mode I most want to avoid. A TEE-based verification scheme requires the verifier to trust that AMD’s or Intel’s attestation root is what it claims to be, that the measured firmware version meets a minimum Security Version Number (SVN) policy as described in the <a href="https://papers.ssrn.com/abstract=6090766" target="_blank" rel="noopener">CVP paper §7.1 Trust Boundary (SSRN 6090766)</a>, and that no unpatched microarchitectural side channel — including <a href="https://foreshadowattack.eu/foreshadow.pdf" target="_blank" rel="noopener">Foreshadow (Van Bulck et al. 2018)</a>, <a href="https://cacheoutattack.com/files/SGAxe.pdf" target="_blank" rel="noopener">SGAxe (van Schaik et al. 2020)</a>, <a href="https://plundervolt.com/doc/plundervolt.pdf" target="_blank" rel="noopener">Plundervolt (Murdock et al. 2019)</a>, and CacheWarp (<a href="https://nvd.nist.gov/vuln/detail/CVE-2023-20592" target="_blank" rel="noopener">CVE-2023-20592</a>) — has been published against the specific silicon the computation runs on. This is a real assumption. The accepted threat model covers a malicious host OS, a malicious hypervisor, and a malicious manager with root on both. Out of scope: physical-access attackers who can probe the CPU package or vary supply voltage directly, and rollback attackers who replay a stale attestation quote to bind a new output to an old measured state (mitigation requires a fresh nonce in every quote challenge, which the attestation protocol specifies in the <a href="https://papers.ssrn.com/abstract=6090766" target="_blank" rel="noopener">CVP paper §7.3 challenge-response flow (SSRN 6090766)</a> but which a deployment can misconfigure). It is a weaker assumption than “trust no hardware” and a stronger assumption than “trust a single manager.” Honest framing calls it a specific, nameable trust root, not an abstraction.</p>
+<p>In exchange, the TEE runs the computation at near-native throughput. On memory-encrypted VM workloads of the class relevant here — numerically intensive Python/C++ pipelines with heavy memory access — Walsh and Paul measured 6–20% overhead in 2017, and <a href="https://techcommunity.microsoft.com/category/azure/blog/azureconfidentialcomputingblog" target="_blank" rel="noopener">Azure confidential computing performance publications</a> and <a href="https://cloud.google.com/confidential-computing/confidential-vm/docs/about-cvm" target="_blank" rel="noopener">GCP Confidential VM documentation</a> on analytics workloads published since then sit in a similar low-double-digit band. The workload caveat is real: encrypted-memory overhead is shape-sensitive, and a benchmark on encrypted SQL scans is not a benchmark on cross-sectional factor construction. What this overhead band does not do is change the research cycle’s order of magnitude, whereas the 100–1000× ZK band on comparable logic does. The toolchain is mature: SEV-SNP attestation libraries, TDX quote verification services, and the <a href="https://confidentialcomputing.io/wp-content/uploads/sites/10/2023/03/CCC-A-Technical-Analysis-of-Confidential-Computing-v1.3_unlocked.pdf" target="_blank" rel="noopener">Confidential Computing Consortium’s technical analysis</a> are public and auditable. Azure, GCP, and AWS operate confidential-computing services in production for workloads adjacent to this use case today.</p>
+<p>The use-case fit is structural. An OVL document has a canonical serialisation — YAML authoring surface → canonical AST → JCS-canonicalised JSON per <a href="https://www.rfc-editor.org/rfc/rfc8785" target="_blank" rel="noopener">RFC 8785</a> → SHA-256 — producing a deterministic hash that uniquely identifies what the strategy computes, as specified in <a href="https://papers.ssrn.com/abstract=6388459" target="_blank" rel="noopener">OVL §5 and §5.5 (SSRN 6388459)</a>. A TEE running an OVL engine embeds that hash in its attestation measurement (SGX MRENCLAVE or SEV-SNP MEASUREMENT field). The verifier checks two things: that the attestation quote is signed by the hardware manufacturer’s root and meets a current TCB policy, and that the measurement in the quote equals the hash of the OVL document the manager claims to have run, as set out in the <a href="https://papers.ssrn.com/abstract=6090766" target="_blank" rel="noopener">CVP paper §4.3 Execution Evidence Binding and §9.2 Verifier Algorithm (SSRN 6090766)</a>. The two checks together bind the claim to a specific execution, which is the property the Proof-Execution Gap demands. The TEE is the mechanism that makes the attestation semantically meaningful right now, on hardware a manager can provision this quarter, at a cost that does not break their research cycle.</p>
+<h2>The OVL specification accommodates the future in which the answer changes</h2>
+<p>The direction of travel in cryptography is real. ZK prover costs are dropping, MPC frameworks are getting usable, FHE throughput is improving. A five-year horizon in which the answer to “which primitive fits strategy verification?” changes is not a horizon I am dismissing.</p>
+<p>The Open Veracity Language (OVL) specification is designed for that horizon, and the conformance rule is explicit in the spec itself: any engine producing identical canonical bytes and identical execution results for a given document and dataset is a conforming implementation, per <a href="https://papers.ssrn.com/abstract=6388459" target="_blank" rel="noopener">OVL §9.1 Open Standard Positioning (SSRN 6388459)</a>. Two sets of artifacts follow from that rule. The stable set — identical across any conforming backend — is the canonical OVL document, its JCS-canonicalised serialisation, its SHA-256 spec hash, and the execution results on a given dataset. The changing set — backend-dependent — is the proof layer: under a TEE backend, an SGX or SEV-SNP attestation quote binding a hardware-measured image to the spec hash; under a future ZK backend, a SNARK or STARK over the execution trace of the same document on the same dataset. A Strategy Verification Package — the tamper-evident bundle an allocator receives, containing the OVL document, the execution results, and the proof layer that binds them to a specific execution — uses the stable set as its identity and whichever proof layer the current backend provides.</p>
+<p>A Strategy Verification Package sealed under TEE attestation in 2026 remains verifiable in a future in which the same OVL document is also provable under a ZK backend. The stable set — document, canonical bytes, spec hash, results — is what the verification category guarantees, and those are backend-independent by construction.</p>
+<p>For an allocator, cap-intro team, or ODD consultant reading this, backend independence translates into one operational procurement question to raise with a manager’s verification vendor: does your format pin the proof backend, or does it separate the strategy specification from the proof layer? A migration path exists only in the second case. Concretely: an emerging manager onboarded in 2026 with a TEE-backed SVP will, under a backend-independent specification, be able to re-prove the same OVL document under a ZK backend when the economics change — without reauthoring the strategy, without the 2026 TEE-backed SVP becoming invalid, and without the allocator’s historical verification records breaking. The migration is a re-proof. The underlying claim does not reissue.</p>
+
+    </div>
+
+  </article>
+
+  <section class="section more-writing" aria-labelledby="more-writing-h">
+    <div class="container">
+      <div class="section-head">
+        <p class="section-head__eyebrow">CONTINUE READING</p>
+        <span class="section-head__bar" aria-hidden="true"></span>
+        <h2 class="section-head__title" id="more-writing-h">More writing</h2>
+      </div>
+      <div class="article-grid">
+        <a class="article-card" href="/writing/defense-in-depth/">
+          <p class="article-card__meta">2026-04-25 · TECHNICAL</p>
+          <h3 class="article-card__title">Defense in Depth for Attested Execution</h3>
+          <p class="article-card__excerpt">Trusted Execution Environments have a published record of serious, remotely exploitable vulnerabilities. The right question is what survives a TEE break, not whether TEEs can break — and the answer determines what a verification platform owes its readers.</p>
+        </a>
+        <a class="article-card" href="/writing/offline-verifiability/">
+          <p class="article-card__meta">2026-04-11 · TECHNICAL</p>
+          <h3 class="article-card__title">Offline Verifiability: Architectural, Not Contractual</h3>
+          <p class="article-card__excerpt">Code escrow, bankruptcy-remote SPVs, and multi-year survival clauses keep a vendor operating through distress. None of them keeps a verification artifact independently checkable once the vendor is gone. Verifiability has to be architectural, not contractual.</p>
+        </a>
+        <a class="article-card" href="/writing/build-in-house/">
+          <p class="article-card__meta">2026-04-04 · ARGUMENT</p>
+          <h3 class="article-card__title">Couldn&#39;t We Just Build This In-House?</h3>
+          <p class="article-card__excerpt">Sophisticated funds build in-house by default, and that default is usually right. The narrow ground on which a verification primitive is the exception — not the rule — is where the case for a third party gets made or doesn’t.</p>
+        </a>
+      </div>
+      <p class="see-all"><a href="/writing/">See all writing →</a></p>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="footer__inner">
+    <div class="footer__mark">
+      <img src="/assets/compressed/logo-mark.png" alt="Lintel Standard" width="80" height="64">
+    </div>
+    <div class="footer__links">
+      <a href="mailto:contact@lintelstandard.com">contact@lintelstandard.com</a>
+      <a href="https://ssrn.com/abstract=6090766" target="_blank" rel="noopener">SSRN 6090766 — OVL</a>
+      <a href="https://ssrn.com/abstract=6388459" target="_blank" rel="noopener">SSRN 6388459 — CVP</a>
+      <a href="/trust/">Trust</a>
+    </div>
+    <div class="footer__copy">© 2026 Lintel Standard, Inc.</div>
+  </div>
+</footer>
+
+<script>
+  document.querySelector('.header__nav-toggle')?.addEventListener('click', function() {
+    var nav = document.getElementById('primary-nav');
+    var open = nav.dataset.open === 'true';
+    nav.dataset.open = open ? 'false' : 'true';
+    this.setAttribute('aria-expanded', open ? 'false' : 'true');
+  });
+</script>
+
+</body>
+</html>

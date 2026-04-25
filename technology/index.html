@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Technology — Lintel Standard</title>
+<meta name="description" content="Lintel's verification stack: a specification language (OVL), sealed execution hardware (TEE), a cryptographic output format (SVP), and a chaining mechanism that binds outputs over time. Standard primitives, new composition.">
+<link rel="canonical" href="https://lintelstandard.com/technology/">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Technology — Lintel Standard">
+<meta property="og:description" content="The verification stack: specification language, sealed execution, attested output, chained lineage.">
+<meta property="og:url" content="https://lintelstandard.com/technology/">
+<meta property="og:image" content="https://lintelstandard.com/assets/compressed/open_graph.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Technology — Lintel Standard">
+<meta name="twitter:description" content="The verification stack: specification language, sealed execution, attested output, chained lineage.">
+<meta name="twitter:image" content="https://lintelstandard.com/assets/compressed/open_graph.jpg">
+
+<link rel="icon" href="/assets/favicon/favicon.ico" sizes="any">
+<link rel="icon" href="/assets/favicon/favicon-96x96.png" type="image/png" sizes="96x96">
+<link rel="apple-touch-icon" href="/assets/favicon/apple-touch-icon.png">
+<link rel="manifest" href="/assets/favicon/site.webmanifest">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="/assets/fonts/inter/Inter-Subset.woff2">
+<link rel="stylesheet" href="/assets/css/colors_and_type.css">
+<link rel="stylesheet" href="/assets/css/site.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="header">
+  <div class="header__inner">
+    <a class="header__brand" href="/" aria-label="Lintel Standard, home">
+      <img src="/assets/compressed/logo-wordmark.png" alt="Lintel Standard" width="120" height="64">
+    </a>
+    <button class="header__nav-toggle" type="button" aria-expanded="false" aria-controls="primary-nav">Menu</button>
+    <nav id="primary-nav" class="header__nav" aria-label="Primary">
+      <a href="/technology/" aria-current="page">Technology</a>
+      <a href="/writing/">Writing</a>
+      <a href="/about/">About</a>
+    </nav>
+    <div class="header__spacer"></div>
+    <a class="header__cta" href="/contact/">Contact us</a>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- The verification stack -->
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <p class="section-head__eyebrow">TECHNOLOGY</p>
+        <span class="section-head__bar" aria-hidden="true"></span>
+        <h1 class="section-head__title section-head__title--h1">The verification stack</h1>
+      </div>
+      <div class="prose">
+        <p>Lintel's verification stack is built from four components: a specification language, sealed execution hardware, a cryptographic output format, and a chaining mechanism that binds outputs over time. Each component is standard; the composition is new.</p>
+      </div>
+
+      <div class="feature-blocks">
+
+        <article class="feature">
+          <div class="feature__media">
+            <img src="/assets/diagrams/fig_specify.svg" alt="Diagram showing how diverse strategy representations collapse into one open format. On the left, three stylized representations of a strategy: a code block, a flowchart, and a question-mark placeholder representing other formats. An arrow points to a single OVL specification file on the right, displaying the YAML structure of a Simple Moving Average trend-following strategy.">
+          </div>
+          <div class="feature__text">
+            <p class="feature__eyebrow">SPECIFICATION</p>
+            <h2 class="feature__h3">The Open Veracity Language</h2>
+            <p class="feature__body">Strategies are specified in the Open Veracity Language — a small, declarative language of roughly 25 mathematical primitives. OVL is deliberately restricted: it expresses what a strategy should compute, not arbitrary code that executes it. The restriction is what makes verification tractable. The language is published and implementable by any party; only Lintel's implementation is proprietary.</p>
+          </div>
+        </article>
+
+        <article class="feature feature--reverse">
+          <div class="feature__media">
+            <img src="/assets/diagrams/fig_seal.svg" alt="Diagram of a Trusted Execution Environment as a chip. A flat top-down view of a square chip with pin rows on all four sides, marked TEE in the center. An arrow labelled OVL plus market data enters from the left; an arrow labelled SVP exits to the right. The chip is opaque to all parties outside the silicon, including Lintel.">
+          </div>
+          <div class="feature__text">
+            <p class="feature__eyebrow">EXECUTION</p>
+            <h2 class="feature__h3">Sealed execution</h2>
+            <p class="feature__body">The OVL specification is loaded into a Trusted Execution Environment — commodity confidential-computing hardware (AMD SEV-SNP, Intel SGX, Intel TDX) that cryptographically isolates the computation. The strategy and market data enter the sealed environment, computation completes, and the environment is wiped. Nobody outside the hardware — including Lintel — can observe or extract the logic. Confidentiality is enforced by the silicon, not by policy.</p>
+          </div>
+        </article>
+
+        <article class="feature">
+          <div class="feature__media">
+            <img src="/assets/diagrams/fig_prove.svg" alt="Diagram of a Strategy Verification Package presented as a tamper-evident document. The document carries a STRATEGY VERIFICATION PACKAGE header, a cryptographic hash, a RETURNS bar chart, a SHARPE value bar, and a hardware-attestation signature line marked SEV-SNP. An angled rectangular stamp reading ATTESTED in blue sits over the signature area.">
+          </div>
+          <div class="feature__text">
+            <p class="feature__eyebrow">OUTPUT</p>
+            <h2 class="feature__h3">The Strategy Verification Package</h2>
+            <p class="feature__body">Execution produces a Strategy Verification Package — a tamper-evident record that binds the claimed results to the specific computation that produced them. The package carries a hardware attestation proving which code ran on which data inside which environment. Any modification after the fact breaks the cryptographic seal and is detected on verification. The SVP is the artifact allocators actually consume; everything else is infrastructure.</p>
+          </div>
+        </article>
+
+        <article class="feature feature--reverse">
+          <div class="feature__media">
+            <img src="/assets/diagrams/fig_persist.svg" alt="Timeline showing the discontinuity between unverifiable historical claims and a verifiable record after SVP adoption. On the left, two ephemeral documents drawn in dashed grey represent unverifiable past claims. A central marker labelled SVP adopted indicates the moment of transition. On the right, two solid documents with ATTESTED stamps represent the post-adoption verifiable record. The timeline itself transitions from dashed grey to solid blue at the adoption event. Labels: before and verifiable track record.">
+          </div>
+          <div class="feature__text">
+            <p class="feature__eyebrow">LINEAGE</p>
+            <h2 class="feature__h3">Chained verification over time</h2>
+            <p class="feature__body">SVPs chain over time. Each verified run references the previous one, so a manager's record becomes a continuous, cryptographically-linked lineage rather than a series of disconnected snapshots. An allocator can verify not just that one result is genuine, but that the record is unbroken. Any gap, substitution, or restart is detectable by construction. Point-in-time audits cannot provide this property.</p>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Published specifications -->
+  <section class="section" id="published-specifications">
+    <div class="container">
+      <div class="section-head">
+        <p class="section-head__eyebrow">PUBLICATIONS</p>
+        <span class="section-head__bar" aria-hidden="true"></span>
+        <h2 class="section-head__title">Published specifications</h2>
+      </div>
+      <div class="prose">
+        <p>Both specifications are published on SSRN and freely available.</p>
+      </div>
+      <div class="spec-grid">
+        <article class="spec-entry">
+          <p class="spec-entry__id">SSRN 6090766</p>
+          <h3 class="spec-entry__title">The Open Veracity Language</h3>
+          <p class="spec-entry__desc">Declarative specification language for verifiable trading strategies.</p>
+          <a class="spec-entry__link" href="https://ssrn.com/abstract=6090766" target="_blank" rel="noopener">Read the specification →</a>
+        </article>
+        <article class="spec-entry">
+          <p class="spec-entry__id">SSRN 6388459</p>
+          <h3 class="spec-entry__title">The Computation Veracity Protocol</h3>
+          <p class="spec-entry__desc">Protocol for sealing, executing, and packaging verifiable computations.</p>
+          <a class="spec-entry__link" href="https://ssrn.com/abstract=6388459" target="_blank" rel="noopener">Read the specification →</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="footer__inner">
+    <div class="footer__mark">
+      <img src="/assets/compressed/logo-mark.png" alt="Lintel Standard" width="80" height="64">
+    </div>
+    <div class="footer__links">
+      <a href="mailto:contact@lintelstandard.com">contact@lintelstandard.com</a>
+      <a href="https://ssrn.com/abstract=6090766" target="_blank" rel="noopener">SSRN 6090766 — OVL</a>
+      <a href="https://ssrn.com/abstract=6388459" target="_blank" rel="noopener">SSRN 6388459 — CVP</a>
+      <a href="/trust/">Trust</a>
+    </div>
+    <div class="footer__copy">© 2026 Lintel Standard, Inc.</div>
+  </div>
+</footer>
+
+<script>
+  document.querySelector('.header__nav-toggle')?.addEventListener('click', function() {
+    var nav = document.getElementById('primary-nav');
+    var open = nav.dataset.open === 'true';
+    nav.dataset.open = open ? 'false' : 'true';
+    this.setAttribute('aria-expanded', open ? 'false' : 'true');
+  });
+</script>
+
+</body>
+</html>

@@ -1,133 +1,236 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lintel Standard — Cryptographic Verification for Systematic Investment Strategies</title>
-    <meta name="description" content="Lintel Standard is building the verification infrastructure for algorithmic investment strategies using confidential computing and cryptographic attestation.">
-    <link rel="canonical" href="https://lintelstandard.com/">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lintel Standard — Strategy verification for systematic hedge funds</title>
+<meta name="description" content="Cryptographic strategy-verification infrastructure for systematic hedge funds. Verification runs inside attested Trusted Execution Environments and produces tamper-evident Strategy Verification Packages.">
+<link rel="canonical" href="https://lintelstandard.com/">
 
-    <!-- Open Graph -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://lintelstandard.com/">
-    <meta property="og:title" content="Lintel Standard — Cryptographic Verification for Systematic Investment Strategies">
-    <meta property="og:description" content="Lintel Standard is building the verification infrastructure for algorithmic investment strategies using confidential computing and cryptographic attestation.">
-    <meta property="og:image" content="https://lintelstandard.com/assets/logo_full.png">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Lintel Standard — Strategy verification for systematic hedge funds">
+<meta property="og:description" content="Cryptographic strategy-verification infrastructure for systematic hedge funds.">
+<meta property="og:url" content="https://lintelstandard.com/">
+<meta property="og:image" content="https://lintelstandard.com/assets/compressed/open_graph.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Lintel Standard — Strategy verification for systematic hedge funds">
+<meta name="twitter:description" content="Cryptographic strategy-verification infrastructure for systematic hedge funds.">
+<meta name="twitter:image" content="https://lintelstandard.com/assets/compressed/open_graph.jpg">
 
-    <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="Lintel Standard — Cryptographic Verification for Systematic Investment Strategies">
-    <meta name="twitter:description" content="Lintel Standard is building the verification infrastructure for algorithmic investment strategies using confidential computing and cryptographic attestation.">
-    <meta name="twitter:image" content="https://lintelstandard.com/assets/logo_full.png">
-
-    <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
-    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
-
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400&family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
-
-    <!-- Stylesheet -->
-    <link rel="stylesheet" href="css/style.css">
+<link rel="icon" href="/assets/favicon/favicon.ico" sizes="any">
+<link rel="icon" href="/assets/favicon/favicon-96x96.png" type="image/png" sizes="96x96">
+<link rel="apple-touch-icon" href="/assets/favicon/apple-touch-icon.png">
+<link rel="manifest" href="/assets/favicon/site.webmanifest">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="/assets/fonts/inter/Inter-Subset.woff2">
+<link rel="stylesheet" href="/assets/css/colors_and_type.css">
+<link rel="stylesheet" href="/assets/css/site.css">
 </head>
 <body>
+<a class="skip-link" href="#main">Skip to content</a>
 
-    <!-- ====================================================================
-         LOGO BAR — Slim identity anchor
-         ==================================================================== -->
-    <header class="logo-bar">
-        <div class="logo-bar-inner">
-            <img src="assets/logo_full.png"
-                 alt="Lintel Standard"
-                 class="logo-bar-logo"
-                 width="720"
-                 height="405">
+<header class="header">
+  <div class="header__inner">
+    <a class="header__brand" href="/" aria-label="Lintel Standard, home">
+      <img src="/assets/compressed/logo-wordmark.png" alt="Lintel Standard" width="120" height="64">
+    </a>
+    <button class="header__nav-toggle" type="button" aria-expanded="false" aria-controls="primary-nav">Menu</button>
+    <nav id="primary-nav" class="header__nav" aria-label="Primary">
+      <a href="/technology/">Technology</a>
+      <a href="/writing/">Writing</a>
+      <a href="/about/">About</a>
+    </nav>
+    <div class="header__spacer"></div>
+    <a class="header__cta" href="/contact/">Contact us</a>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero__grid">
+        <div class="hero__text">
+          <p class="hero__eyebrow">STRATEGY VERIFICATION</p>
+          <h1 class="hero__h1">Capital allocation runs on trust, not proof.</h1>
+          <p class="hero__dek">Lintel produces cryptographic proof that a systematic strategy produced its claimed results. Strategies execute inside sealed hardware. The logic is never transmitted to Lintel or to anyone else.</p>
+          <div class="hero__cta-row">
+            <a class="btn btn-primary" href="/contact/">Contact us</a>
+          </div>
         </div>
-    </header>
+        <div class="hero__visual" aria-hidden="true">
+          <img src="/assets/diagrams/guilloche.svg" alt="" loading="lazy" decoding="async" fetchpriority="low" width="1500" height="1000">
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <main>
+  <!-- How it works -->
+  <section class="section" id="how-it-works">
+    <div class="container">
+      <div class="section-head">
+        <p class="section-head__eyebrow">MECHANISM</p>
+        <span class="section-head__bar" aria-hidden="true"></span>
+        <h2 class="section-head__title">How it works</h2>
+      </div>
+      <div class="prose">
+        <p>Verification happens in three steps. The strategy is specified in a declarative language, executed inside sealed hardware, and packaged as a tamper-evident proof. No party, including Lintel, needs access to the strategy logic.</p>
+      </div>
+      <figure class="diagram">
+        <img src="/assets/diagrams/fig_home.svg" alt="Three-stage horizontal flow showing how Lintel works. On the left, a YAML specification block represents a strategy expressed in the Open Veracity Language. In the middle, a chip with visible pin rows represents sealed execution inside a Trusted Execution Environment. On the right, a document marked ATTESTED represents the resulting Strategy Verification Package." width="1400" height="500">
+        <figcaption class="diagram__caption">The verification flow. The strategy logic never leaves the sealed environment.</figcaption>
+      </figure>
+      <div class="steps">
+        <div class="step">
+          <h3 class="step__label">Specify</h3>
+          <p class="step__body">Strategies are written in the Open Veracity Language — a declarative specification of roughly 25 mathematical primitives. OVL is published, inspectable, and implementable by any party.</p>
+        </div>
+        <div class="step">
+          <h3 class="step__label">Seal and execute</h3>
+          <p class="step__body">The specification is compiled and executed inside a Trusted Execution Environment on commodity confidential-computing hardware. The strategy logic never leaves the sealed environment.</p>
+        </div>
+        <div class="step">
+          <h3 class="step__label">Prove</h3>
+          <p class="step__body">Execution emits a Strategy Verification Package — a tamper-evident, hardware-attested record that binds claimed results to the computation that produced them.</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-        <!-- ================================================================
-             LEAD — Headline + Diagram + About (one continuous section)
-             ================================================================ -->
-        <section class="lead">
-            <h1 class="lead-headline">Strategy verification for systematic hedge funds and their investors.</h1>
+  <!-- Who uses Lintel -->
+  <section class="section" id="who-uses-lintel">
+    <div class="container">
+      <div class="section-head">
+        <p class="section-head__eyebrow">AUDIENCE</p>
+        <span class="section-head__bar" aria-hidden="true"></span>
+        <h2 class="section-head__title">Who uses Lintel</h2>
+      </div>
+      <div class="prose">
+        <p>Lintel sits between the party producing a verifiable claim and the parties that depend on that claim being true. Four profiles recur.</p>
+      </div>
 
-            <div class="lead-diagram">
-                <img src="assets/figA_nobg.png"
-                     alt="Diagram showing strategy logic and market data entering a sealed execution environment, producing a cryptographically signed Strategy Validation Package for investor verification">
-            </div>
+      <div class="tabs">
+        <div class="tabs__list" role="tablist" aria-label="Stakeholder profiles">
+          <button class="tabs__tab" role="tab" id="tab-managers" aria-controls="panel-managers" aria-selected="true" tabindex="0">Managers</button>
+          <button class="tabs__tab" role="tab" id="tab-allocators" aria-controls="panel-allocators" aria-selected="false" tabindex="-1">Allocators</button>
+          <button class="tabs__tab" role="tab" id="tab-capintro" aria-controls="panel-capintro" aria-selected="false" tabindex="-1">Capital introduction</button>
+          <button class="tabs__tab" role="tab" id="tab-odd" aria-controls="panel-odd" aria-selected="false" tabindex="-1">Due diligence</button>
+        </div>
 
-            <div class="content-narrow">
-                <p>Lintel Standard is building the verification infrastructure for algorithmic investment strategies. We address a structural problem in the systematic fund industry: when a manager claims their strategy produced specific results, there is no mechanism for an investor to independently verify that claim without requiring disclosure of proprietary logic.</p>
-                <p>Our platform uses Trusted Execution Environments to execute strategy logic inside a hardware-attested enclave that neither party — and neither we — can observe or modify. The output is a Strategy Validation Package (SVP): a cryptographically bound tuple of logic, data, and environment that constitutes mechanical proof of computational results. Verification is possible without source code disclosure.</p>
-                <p>We are building the open standard and the commercial platform to make this the default language of trust in systematic finance.</p>
-            </div>
-        </section>
+        <div class="tabs__panel" id="panel-managers" role="tabpanel" aria-labelledby="tab-managers">
+          <p class="tabs__panel-eyebrow">FOR MANAGERS</p>
+          <h3 class="tabs__panel-h3">Shorter operational due diligence, larger allocator universe.</h3>
+          <p class="tabs__panel-body">Systematic managers raise capital on claimed performance. Lintel converts those claims into cryptographic proofs — verifiable by any allocator, with no disclosure of the strategy that produced them. The result is shorter operational due diligence and access to allocators who require evidence, not attestation letters.</p>
+        </div>
 
-        <hr class="section-divider">
+        <div class="tabs__panel" id="panel-allocators" role="tabpanel" aria-labelledby="tab-allocators" hidden>
+          <p class="tabs__panel-eyebrow">FOR ALLOCATORS</p>
+          <h3 class="tabs__panel-h3">Evidence-based allocation. Faster due diligence cycles.</h3>
+          <p class="tabs__panel-body">Operational due diligence currently depends on documents, interviews, and inference. Lintel replaces parts of that with hardware-attested evidence — proof that a strategy produced the returns claimed, without requiring the manager to disclose what the strategy does. The result is evidence-based allocation, earlier detection of model drift, and capacity to evaluate emerging managers who would otherwise be screened out by ODD constraints.</p>
+        </div>
 
-        <!-- ================================================================
-             RESEARCH
-             ================================================================ -->
-        <!--
-            PAPER LINKS — Update URLs here when new papers are published.
-            Paper 1 SSRN: https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6090766
-            Paper 2 SSRN: https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6388459
-        -->
-        <section class="research">
-            <div class="content-narrow">
-                <h2>Research</h2>
-                <p>Our published research defines the protocol architecture and the specification language that underpin the platform.</p>
+        <div class="tabs__panel" id="panel-capintro" role="tabpanel" aria-labelledby="tab-capintro" hidden>
+          <p class="tabs__panel-eyebrow">FOR CAPITAL INTRODUCTION</p>
+          <h3 class="tabs__panel-h3">Recommendation quality backed by evidence.</h3>
+          <p class="tabs__panel-body">Capital introduction desks stake their careers and fee income on the managers they recommend. Lintel provides a layer of evidence that sits between the manager's deck and the allocator's due diligence — a pre-screen that filters out misrepresented track records before they become a reputational incident. The result is higher-quality recommendations, reduced exposure to fraud risk, and a credible path to introducing smaller managers to large allocators.</p>
+        </div>
 
-                <!-- Paper 1 -->
-                <div class="paper">
-                    <div class="paper-title">The Proof-Execution Gap: A Universal Framework for Computational Veracity in Adversarial Environments</div>
-                    <div class="paper-meta">Kalle H. Fischer</div>
-                    <div class="paper-meta">Published — Working Paper, January 2026</div>
-                    <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6090766"
-                       class="paper-link"
-                       target="_blank"
-                       rel="noopener noreferrer">View on SSRN &rarr;</a>
-                </div>
+        <div class="tabs__panel" id="panel-odd" role="tabpanel" aria-labelledby="tab-odd" hidden>
+          <p class="tabs__panel-eyebrow">FOR DUE DILIGENCE</p>
+          <h3 class="tabs__panel-h3">Verify what was previously unverifiable.</h3>
+          <p class="tabs__panel-body">Operational due diligence consultants face a structural problem: the most important claims to verify are the ones that cannot be verified without access to proprietary logic. Lintel resolves this by providing cryptographic proof of claim validity without exposing the underlying logic — the consultant completes the verification step, the manager retains the intellectual property. The result is completed due diligence reports with evidence rather than attestations, reduced liability exposure, and a faster cycle for all parties.</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-                <!-- Paper 2 -->
-                <div class="paper">
-                    <div class="paper-title">The Open Veracity Language: A Sub-Turing Specification for Declarative Computation in Adversarial Verification Environments</div>
-                    <div class="paper-meta">Kalle H. Fischer</div>
-                    <div class="paper-meta">Published — Working Paper, March 2026</div>
-                    <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6388459"
-                       class="paper-link"
-                       target="_blank"
-                       rel="noopener noreferrer">View on SSRN &rarr;</a>
-                </div>
-            </div>
-        </section>
+  <!-- Recent articles -->
+  <section class="section" id="recent-articles">
+    <div class="container">
+      <div class="section-head">
+        <p class="section-head__eyebrow">WRITING</p>
+        <span class="section-head__bar" aria-hidden="true"></span>
+        <h2 class="section-head__title">Recent articles</h2>
+      </div>
+      <div class="article-grid">
+        <a class="article-card" href="/writing/defense-in-depth/">
+          <p class="article-card__meta">2026-04-25 · TECHNICAL</p>
+          <h3 class="article-card__title">Defense in Depth for Attested Execution</h3>
+          <p class="article-card__excerpt">TEEs have a published record of serious, remotely exploitable vulnerabilities. The right question is what survives a TEE break — not whether TEEs can break.</p>
+        </a>
+        <a class="article-card" href="/writing/tees-vs-zk-mpc-fhe/">
+          <p class="article-card__meta">2026-04-18 · TECHNICAL</p>
+          <h3 class="article-card__title">Why TEEs — Not ZK, MPC, or FHE</h3>
+          <p class="article-card__excerpt">TEEs are not the strongest cryptographic primitive in this comparison. The question is which one closes the Proof-Execution Gap today, on commodity hardware, at production latency.</p>
+        </a>
+        <a class="article-card" href="/writing/offline-verifiability/">
+          <p class="article-card__meta">2026-04-11 · TECHNICAL</p>
+          <h3 class="article-card__title">Offline Verifiability: Architectural, Not Contractual</h3>
+          <p class="article-card__excerpt">Code escrow and bankruptcy-remote SPVs keep a vendor operating through distress. None of them keep a verification artifact independently checkable once the vendor is gone.</p>
+        </a>
+      </div>
+      <p class="see-all"><a href="/writing/">See all writing →</a></p>
+    </div>
+  </section>
 
-        <hr class="section-divider">
+</main>
 
-        <!-- ================================================================
-             CONTACT
-             ================================================================ -->
-        <section class="contact">
-            <div class="content-narrow">
-                <h2>Contact</h2>
-                <!-- UPDATE EMAIL ADDRESS: change both the href and visible text below -->
-                <p>For inquiries, please contact us at <a href="mailto:kalle@lintelstandard.com">kalle@lintelstandard.com</a>.</p>
-            </div>
-        </section>
+<footer class="footer">
+  <div class="footer__inner">
+    <div class="footer__mark">
+      <img src="/assets/compressed/logo-mark.png" alt="Lintel Standard" width="80" height="64">
+    </div>
+    <div class="footer__links">
+      <a href="mailto:contact@lintelstandard.com">contact@lintelstandard.com</a>
+      <a href="https://ssrn.com/abstract=6090766" target="_blank" rel="noopener">SSRN 6090766 — OVL</a>
+      <a href="https://ssrn.com/abstract=6388459" target="_blank" rel="noopener">SSRN 6388459 — CVP</a>
+      <a href="/trust/">Trust</a>
+    </div>
+    <div class="footer__copy">© 2026 Lintel Standard, Inc.</div>
+  </div>
+</footer>
 
-    </main>
+<script>
+  // Mobile nav toggle
+  document.querySelector('.header__nav-toggle')?.addEventListener('click', function() {
+    var nav = document.getElementById('primary-nav');
+    var open = nav.dataset.open === 'true';
+    nav.dataset.open = open ? 'false' : 'true';
+    this.setAttribute('aria-expanded', open ? 'false' : 'true');
+  });
 
-    <!-- ====================================================================
-         FOOTER
-         ==================================================================== -->
-    <footer>
-        <p>&copy; 2026 Lintel Standard, Inc. All rights reserved. Delaware C-Corp.</p>
-    </footer>
+  // Tab interface — keyboard nav + activation
+  (function() {
+    var tablist = document.querySelector('[role="tablist"]');
+    if (!tablist) return;
+    var tabs = Array.prototype.slice.call(tablist.querySelectorAll('[role="tab"]'));
+    var panels = tabs.map(function(t){ return document.getElementById(t.getAttribute('aria-controls')); });
+
+    function activate(index) {
+      tabs.forEach(function(tab, i) {
+        var selected = i === index;
+        tab.setAttribute('aria-selected', selected ? 'true' : 'false');
+        tab.setAttribute('tabindex', selected ? '0' : '-1');
+        if (selected) tab.focus();
+        if (panels[i]) {
+          if (selected) panels[i].removeAttribute('hidden');
+          else panels[i].setAttribute('hidden', '');
+        }
+      });
+    }
+
+    tabs.forEach(function(tab, i) {
+      tab.addEventListener('click', function() { activate(i); });
+      tab.addEventListener('keydown', function(e) {
+        var n = tabs.length;
+        if (e.key === 'ArrowRight') { e.preventDefault(); activate((i + 1) % n); }
+        else if (e.key === 'ArrowLeft') { e.preventDefault(); activate((i - 1 + n) % n); }
+        else if (e.key === 'Home') { e.preventDefault(); activate(0); }
+        else if (e.key === 'End') { e.preventDefault(); activate(n - 1); }
+      });
+    });
+  })();
+</script>
 
 </body>
 </html>

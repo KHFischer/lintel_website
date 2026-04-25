@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Writing — Lintel Standard</title>
+<meta name="description" content="Long-form writing on cryptographic strategy verification — concepts, technical architecture, frameworks, and arguments. Plus the published OVL and CVP specifications.">
+<link rel="canonical" href="https://lintelstandard.com/writing/">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Writing — Lintel Standard">
+<meta property="og:description" content="Long-form writing on cryptographic strategy verification.">
+<meta property="og:url" content="https://lintelstandard.com/writing/">
+<meta property="og:image" content="https://lintelstandard.com/assets/compressed/open_graph.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Writing — Lintel Standard">
+<meta name="twitter:description" content="Long-form writing on cryptographic strategy verification.">
+<meta name="twitter:image" content="https://lintelstandard.com/assets/compressed/open_graph.jpg">
+
+<link rel="icon" href="/assets/favicon/favicon.ico" sizes="any">
+<link rel="icon" href="/assets/favicon/favicon-96x96.png" type="image/png" sizes="96x96">
+<link rel="apple-touch-icon" href="/assets/favicon/apple-touch-icon.png">
+<link rel="manifest" href="/assets/favicon/site.webmanifest">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="/assets/fonts/inter/Inter-Subset.woff2">
+<link rel="stylesheet" href="/assets/css/colors_and_type.css">
+<link rel="stylesheet" href="/assets/css/site.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="header">
+  <div class="header__inner">
+    <a class="header__brand" href="/" aria-label="Lintel Standard, home">
+      <img src="/assets/compressed/logo-wordmark.png" alt="Lintel Standard" width="120" height="64">
+    </a>
+    <button class="header__nav-toggle" type="button" aria-expanded="false" aria-controls="primary-nav">Menu</button>
+    <nav id="primary-nav" class="header__nav" aria-label="Primary">
+      <a href="/technology/">Technology</a>
+      <a href="/writing/" aria-current="page">Writing</a>
+      <a href="/about/">About</a>
+    </nav>
+    <div class="header__spacer"></div>
+    <a class="header__cta" href="/contact/">Contact us</a>
+  </div>
+</header>
+
+<main id="main">
+
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <p class="section-head__eyebrow">WRITING</p>
+        <span class="section-head__bar" aria-hidden="true"></span>
+        <h1 class="section-head__title section-head__title--h1">Writing</h1>
+      </div>
+
+      <div class="writing-list">
+
+        <article class="writing-row">
+          <span class="writing-row__bar" aria-hidden="true"></span>
+          <p class="writing-row__cat">TECHNICAL</p>
+          <h2 class="writing-row__title"><a href="/writing/defense-in-depth/">Defense in Depth for Attested Execution</a></h2>
+          <p class="writing-row__date">2026-04-25</p>
+          <p class="writing-row__excerpt">Trusted Execution Environments have a published record of serious, remotely exploitable vulnerabilities. The right question is what survives a TEE break, not whether TEEs can break — and the answer determines what a verification platform owes its readers.</p>
+        </article>
+
+        <article class="writing-row">
+          <span class="writing-row__bar" aria-hidden="true"></span>
+          <p class="writing-row__cat">TECHNICAL</p>
+          <h2 class="writing-row__title"><a href="/writing/tees-vs-zk-mpc-fhe/">Why TEEs — Not ZK, MPC, or FHE</a></h2>
+          <p class="writing-row__date">2026-04-18</p>
+          <p class="writing-row__excerpt">TEEs are not the strongest cryptographic primitive when measured against zero-knowledge proofs, secure multiparty computation, or fully homomorphic encryption. The question is which one closes the Proof-Execution Gap today, on commodity hardware, at the latency a systematic strategy requires.</p>
+        </article>
+
+        <article class="writing-row">
+          <span class="writing-row__bar" aria-hidden="true"></span>
+          <p class="writing-row__cat">TECHNICAL</p>
+          <h2 class="writing-row__title"><a href="/writing/offline-verifiability/">Offline Verifiability: Architectural, Not Contractual</a></h2>
+          <p class="writing-row__date">2026-04-11</p>
+          <p class="writing-row__excerpt">Code escrow, bankruptcy-remote SPVs, and multi-year survival clauses keep a vendor operating through distress. None of them keeps a verification artifact independently checkable once the vendor is gone. Verifiability has to be architectural, not contractual.</p>
+        </article>
+
+        <article class="writing-row">
+          <span class="writing-row__bar" aria-hidden="true"></span>
+          <p class="writing-row__cat">ARGUMENT</p>
+          <h2 class="writing-row__title"><a href="/writing/build-in-house/">Couldn't We Just Build This In-House?</a></h2>
+          <p class="writing-row__date">2026-04-04</p>
+          <p class="writing-row__excerpt">Sophisticated funds build in-house by default, and that default is usually right. The narrow ground on which a verification primitive is the exception — not the rule — is where the case for a third party gets made or doesn't.</p>
+        </article>
+
+        <article class="writing-row">
+          <span class="writing-row__bar" aria-hidden="true"></span>
+          <p class="writing-row__cat">FRAMEWORK</p>
+          <h2 class="writing-row__title"><a href="/writing/strategy-verification-maturity-model/">Strategy Verification Maturity Model</a></h2>
+          <p class="writing-row__date">2026-03-28</p>
+          <p class="writing-row__excerpt">A maturity model earns its keep when practitioners read the levels and see their own work in them. A four-level model for strategy verification, calibrated to current allocator practice rather than what tooling makes possible.</p>
+        </article>
+
+        <article class="writing-row">
+          <span class="writing-row__bar" aria-hidden="true"></span>
+          <p class="writing-row__cat">TECHNICAL</p>
+          <h2 class="writing-row__title"><a href="/writing/tees-sub-turing-language/">Why TEEs + a Sub-Turing Language</a></h2>
+          <p class="writing-row__date">2026-03-21</p>
+          <p class="writing-row__excerpt">A Trusted Execution Environment attests the binary, not the behaviour. A sub-Turing specification language closes the gap between what the silicon proves and what an allocator actually wants to know.</p>
+        </article>
+
+        <article class="writing-row">
+          <span class="writing-row__bar" aria-hidden="true"></span>
+          <p class="writing-row__cat">CONCEPT</p>
+          <h2 class="writing-row__title"><a href="/writing/proof-execution-gap/">The Proof-Execution Gap</a></h2>
+          <p class="writing-row__date">2026-03-14</p>
+          <p class="writing-row__excerpt">Capital allocation depends on claims that cannot be independently verified without exposing the strategy that produced them. The pattern is structural rather than behavioural — a verification dead-end the industry has quietly agreed to call due diligence.</p>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="published-specifications">
+    <div class="container">
+      <div class="section-head">
+        <p class="section-head__eyebrow">PUBLICATIONS</p>
+        <span class="section-head__bar" aria-hidden="true"></span>
+        <h2 class="section-head__title">Published specifications</h2>
+      </div>
+
+      <div class="writing-list">
+        <article class="writing-row">
+          <span class="writing-row__bar" aria-hidden="true"></span>
+          <p class="writing-row__cat">SPECIFICATION</p>
+          <h3 class="writing-row__title"><a href="https://ssrn.com/abstract=6090766" target="_blank" rel="noopener">The Open Veracity Language</a></h3>
+          <p class="writing-row__date">2026-03</p>
+          <p class="writing-row__excerpt">Declarative specification language for verifiable trading strategies. <a href="https://ssrn.com/abstract=6090766" target="_blank" rel="noopener">Read on SSRN →</a></p>
+        </article>
+
+        <article class="writing-row">
+          <span class="writing-row__bar" aria-hidden="true"></span>
+          <p class="writing-row__cat">SPECIFICATION</p>
+          <h3 class="writing-row__title"><a href="https://ssrn.com/abstract=6388459" target="_blank" rel="noopener">The Computation Veracity Protocol</a></h3>
+          <p class="writing-row__date">2026-03</p>
+          <p class="writing-row__excerpt">Protocol for sealing, executing, and packaging verifiable computations. <a href="https://ssrn.com/abstract=6388459" target="_blank" rel="noopener">Read on SSRN →</a></p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="footer__inner">
+    <div class="footer__mark">
+      <img src="/assets/compressed/logo-mark.png" alt="Lintel Standard" width="80" height="64">
+    </div>
+    <div class="footer__links">
+      <a href="mailto:contact@lintelstandard.com">contact@lintelstandard.com</a>
+      <a href="https://ssrn.com/abstract=6090766" target="_blank" rel="noopener">SSRN 6090766 — OVL</a>
+      <a href="https://ssrn.com/abstract=6388459" target="_blank" rel="noopener">SSRN 6388459 — CVP</a>
+      <a href="/trust/">Trust</a>
+    </div>
+    <div class="footer__copy">© 2026 Lintel Standard, Inc.</div>
+  </div>
+</footer>
+
+<script>
+  document.querySelector('.header__nav-toggle')?.addEventListener('click', function() {
+    var nav = document.getElementById('primary-nav');
+    var open = nav.dataset.open === 'true';
+    nav.dataset.open = open ? 'false' : 'true';
+    this.setAttribute('aria-expanded', open ? 'false' : 'true');
+  });
+</script>
+
+</body>
+</html>
